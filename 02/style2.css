@@ -1,0 +1,132 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:ital,wght@1,100..900&family=Passion+One:wght@400;700;900&display=swap');
+
+:root {
+    --fonte1: 'Passion One', 'cursive';
+    --fonte2: 'Sriracha', 'cursive';
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    min-height: 100vh;
+    background-color: darkgray;
+}
+
+header {
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+header > h1 {
+    font-family: var(--fonte1);
+    font-variant: small-caps;
+    font-size: 8vw; /* Ajuste baseado no tamanho da viewport */
+    padding-top: 30px;
+}
+
+header > p {
+    padding-bottom: 30px;
+}
+
+header p > a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header p > a:hover {
+    text-decoration: underline;
+}
+
+section {
+    padding: 5vh 5%;
+    line-height: 1.5em;
+}
+
+section.imagem > p {
+    width: 90%; /* Ajuste responsivo */
+    background-color: rgba(0, 0, 0, 0.527);
+    text-shadow: 1px 1px 0px black;
+    margin: auto;
+}
+
+.normal {
+    font-family: "Passion One", 'sans-serif';
+    font-style: italic;
+    font-size: 24px; /* Tamanho ajustado para mobile */
+    background-color: white;
+    padding: 10px;
+}
+
+.imagem {
+    background-color: rgb(41, 41, 41);
+    font-family: "Passion One", 'sans-serif';
+    color: white;
+    font-style: italic;
+    font-size: 24px; /* Tamanho ajustado para mobile */
+    box-shadow: inset 6px 6px 13px 0px rgba(0, 0, 0, 0.527);
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 10px;
+}
+
+section#img01 {
+    background-image: url(imagens/background001.jpg);
+    background-position: center center;
+    background-size: cover;
+}
+
+section#img02 {
+    background-image: url(imagens/background002.jpg);
+    background-size: cover;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Media Queries para dispositivos móveis */
+@media (max-width: 768px) {
+    header > h1 {
+        font-size: 12vw; /* Ajuste maior para telas pequenas */
+        padding-top: 20px;
+    }
+
+    section {
+        padding: 3vh 5%;
+        font-size: 18px;
+    }
+
+    .normal, .imagem {
+        font-size: 20px; /* Reduzindo o tamanho para telas menores */
+    }
+
+    section.imagem > p {
+        width: 100%; /* Utilizar toda a largura */
+    }
+}
+
+@media (max-width: 480px) {
+    header > h1 {
+        font-size: 14vw; /* Fonte ainda maior para telas muito pequenas */
+        padding-top: 15px;
+    }
+
+    section {
+        padding: 2vh 5%;
+    }
+
+    .normal, .imagem {
+        font-size: 16px; /* Fonte menor para dispositivos muito pequenos */
+    }
+}
