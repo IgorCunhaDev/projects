@@ -47,7 +47,7 @@ img {
 }
 
 h2::before {
-    content: "versao Mobile";
+    content: "Versão Mobile";
 }
 
 img#phone { display: block;}
