@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+@media (min-width: 768px) {
+    .NomeNoivos > span {
+        font-size: 3em;
+    }
+
+    .data, .estado {
+        font-size: 30px;
+    }
+
+    .text {
+        width: 90vw;
+        font-size: 1em;
+    }
+}
