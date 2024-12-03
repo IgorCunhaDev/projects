@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
     .NomeNoivos > span {
         font-size: 3em;
     }
