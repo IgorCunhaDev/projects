@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+body, html {
+    width: 100vw;
+    height: 100%;
+}
+
+body{
+    background: black url(2.JPG);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+}
+
+#burguer {
+    background-color: rgb(48, 48, 48);
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#menu {
+    max-height: 0; /* Menu escondido inicialmente */
+    overflow: hidden; /* Esconde conteúdo extra */
+    transition: max-height 0.5s ease; /* Transição suave */
+    background-color: gray;
+}
+
+#menu.open {
+    max-height: 500px; 
+}
+
+header {
+    background-color: gray;
+}
+
+
+nav > a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    text-align: center;
+    display:block ;
+    border-top: 2px solid rgb(102, 102, 102);
+}
+
+a:hover {
+    background-color: white;
+    color: black;
+}
+
+.NomeNoivos {
+    padding: 30px;
+}
+
+.NomeNoivos > span{
+    color: white;
+    font-size: 3.0em;
+    margin: auto;
+    text-align: center;
+    display: block;
+    font-weight: bold;
+}
+
+.imagem {
+    text-align: center;
+    padding-top: 50px;
+}
+
+.data {
+    color: white;
+    text-align: center;
+    padding: 30px;
+    font-size: 30px;
+}
+
+.estado {
+    padding-bottom: 50px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.text {
+    margin: auto;
+    width: 80vw;
+    background-color: rgba(128, 128, 128, 0.404);
+    color: white;
+    text-align: center;
+    line-height: 3em;
+    text-indent: 10px;
+    text-align: justify;
+    padding: 10px;
+}
+
+.text2 {
+    text-align: center;
+    font-size: 1.5em;
+}
