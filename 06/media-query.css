@@ -12,6 +12,11 @@
         padding: 10px;
         flex-wrap: nowrap;
         justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
     }
 
     #menu > a {
@@ -23,5 +28,11 @@
 
     #menu > a:hover {
         text-decoration: underline;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #menu > a {
+        font-size: 24px;
     }
 }

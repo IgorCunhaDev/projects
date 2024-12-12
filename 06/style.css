@@ -10,12 +10,17 @@
     display: none;
 }
 
+
 #mobile {
     display: block;
    /* background: linear-gradient( #D0DBED, #ABBEDE, #869DD7, #4973BF, #3E4D84 ); */
     background-color: #4973BF;
-    width: 70vw;
+    width: 40vw;
     height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 #mobile > img {
@@ -28,7 +33,7 @@
 #mobile > p {
     color: #D0DBED;
     padding: 10px 0px 40px 24px;
-    font-size: 20px;
+    font-size: 25px;
     border-bottom: 2px solid #0859e4;
 }
 
