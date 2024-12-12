@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+@media screen and (min-width: 768px) {
+    #mobile {
+        display: none;
+    }
+
+    #menu  {
+        background-color: #4973BF;
+        display: flex;
+        text-align: center;
+        padding: 10px;
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+
+    #menu > a {
+        padding-left: 20px;
+        font-size: 20px;
+        text-decoration: none;
+        color: #D0DBED;
+    }
+
+    #menu > a:hover {
+        text-decoration: underline;
+    }
+}
