@@ -6,6 +6,10 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+#menu {
+    display: none;
+}
+
 #mobile {
     display: block;
    /* background: linear-gradient( #D0DBED, #ABBEDE, #869DD7, #4973BF, #3E4D84 ); */
