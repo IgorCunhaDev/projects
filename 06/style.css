@@ -15,12 +15,32 @@
     display: block;
    /* background: linear-gradient( #D0DBED, #ABBEDE, #869DD7, #4973BF, #3E4D84 ); */
     background-color: #4973BF;
-    width: 65vw;
+    width: 60vw;
     height: 100vh;
+    border-radius: 0px 20px 20px 0px;
     position: fixed;
     top: 0;
-    left: 0;
+    left: 0vw;
+    transition: left 0.3s ease;
     z-index: 1000;
+}
+
+#toggleMenu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4973BF;
+    color: #D0DBED;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+#toggleMenu:hover {
+    background-color: #869DD7;
 }
 
 #mobile > img {

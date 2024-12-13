@@ -5,6 +5,10 @@
         display: none;
     }
 
+    button {
+        display: none;
+    }
+
     #menu  {
         background-color: #4973BF;
         display: flex;
@@ -24,7 +28,6 @@
         font-size: 20px;
         text-decoration: none;
         color: #D0DBED;
-        transition: text-decoration 0.3s ease;
     }
 
     #menu > a:hover {
