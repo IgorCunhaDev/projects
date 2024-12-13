@@ -1,6 +1,13 @@
-const toggleButton = document.getElementById("toggle-menu");
-const navMenu = document.getElementById("nav");
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleMenuButton = document.getElementById("toggleMenu");
+    const mobileMenu = document.getElementById("mobile");
 
-toggleButton.addEventListener("click", () => {
-    navMenu.classList.toggle("show");
+    toggleMenuButton.addEventListener("click", function () {
+        // Alterna a posição do menu
+        if (mobileMenu.style.left === "0px") {
+            mobileMenu.style.left = "-60vw";
+        } else {
+            mobileMenu.style.left = "0px";
+        }
+    });
 });
