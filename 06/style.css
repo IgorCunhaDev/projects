@@ -112,6 +112,44 @@ body {
 
 }
 
+.noivos {
+    color: #4973BF;
+}
+
+#contador {
+    text-align: center;
+    padding: 70px;
+}
+
+#contador > h1 {
+    color: #3E4D84;
+    font-size: 30px;
+}
+
+#contadorfilho {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 20px;
+    
+}
+
+.time {
+    background-color: #4973BF;
+    border-radius: 10px;
+}
+
+.time span {
+    display: block;
+    padding: 5px;
+    color: #D0DBED;
+}
+
+.dias, .horas, .minutos, .segundos {
+    font-size: 2rem;
+    
+}
+
 #foto {
     background-image: url(img/2.jpg);
     background-repeat: no-repeat;

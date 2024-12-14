@@ -47,14 +47,35 @@
                 <p>Nesse site concentramos algumas informações sobre o dia da festa e nossa lista de presente (lembrando sempre que somos recém formados!).</p><br>
                 
                 <p>No mais, só vamo! Contamos com você!</p>
-                
             </article>
         </section>
 
-        <section id="foto">
-            
+        <section id="contador">
+            <h1>Contagem Regressiva</h1>
+            <div id="contadorfilho">
+                <div class="time">
+                    <span id="dias">0</span>
+                    <span>Dias</span>
+                </div>
+                <div class="time">
+                    <span id="horas">0</span>
+                    <span>Horas</span>
+                </div>
+                <div class="time">
+                    <span id="minutos">0</span>
+                    <span>Minutos</span>
+                </div>
+                <div class="time">
+                    <span id="segundos">0</span>
+                    <span>Segundos</span>
+                </div>
+            </div>
         </section>
 
+
+        <section id="foto">
+        </section>
+        
         <section class="ale">
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui dicta nostrum numquam omnis magnam vero soluta eaque, deleniti officiis at corporis? Illum, id dolor placeat iste natus labore nulla magnam!
             Aspernatur iste, laboriosam incidunt velit delectus inventore fugit adipisci, perspiciatis mollitia, asperiores maiores. Esse obcaecati cumque accusamus ipsum debitis eveniet ad? Deserunt doloremque labore aliquam iusto nam accusantium veritatis reiciendis!
@@ -82,20 +103,7 @@
             Optio nobis, qui facere, deleniti delectus atque debitis, mollitia repellendus explicabo asperiores consectetur. Ad, obcaecati impedit porro magni esse possimus. Quasi laboriosam placeat possimus repudiandae a in, vitae blanditiis quibusdam.</p><br><br><br>
         </section>
     </main>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const toggleMenuButton = document.getElementById("toggleMenu");
-            const mobileMenu = document.getElementById("mobile");
-
-            toggleMenuButton.addEventListener("click", function () {
-                // Alterna a posição do menu
-                if (mobileMenu.style.left === "0px") {
-                    mobileMenu.style.left = "-60vw";
-                } else {
-                    mobileMenu.style.left = "0px";
-                }
-            });
-        });
-    </script>
+    
+    <script src="script.js"></script>
 </body>
 </html>
