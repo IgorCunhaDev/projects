@@ -17,7 +17,7 @@ body {
 }
 
 .carrosel {
-    width: 60%;
+    width: 70%;
     max-width: 600px;
     height: 50vh;
     overflow: hidden;
@@ -57,7 +57,7 @@ body {
     padding: 10px;
     cursor: pointer;
     border: none;
-    font-size: 24px;
+    font-size: 20px;
     border-radius: 30%;
     transition: background-color 0.3s ease;
 }
@@ -87,7 +87,7 @@ body {
 
 .texto2 p {
     color: #D4B493;
-    font-size: 15px;
+    font-size: 20px;
     text-indent: 15px;
     text-align: center;
 }
@@ -113,7 +113,7 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 50%;
+    width: 70%;
     max-width: 400px;
     margin: auto;
     position: relative;
@@ -131,7 +131,7 @@ body {
     flex-direction: column;
     gap: 20px;
     font-size: 1.5rem;
-    width: 40vw;
+    width: 50vw;
     text-align: center;
     margin: auto;
 }
@@ -150,9 +150,15 @@ body {
 }
 
 .musica iframe {
-    width: 100%;   /* A largura do vídeo será 100% da largura disponível */
+    width: 80vw;   /* A largura do vídeo será 100% da largura disponível */
     height: 400px;  /* A altura será proporcional à largura */
     max-width: 560px;  /* Limita a largura máxima para 560px */
     border-radius: 10px;
 }
 
+footer {
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 10px;
+}
