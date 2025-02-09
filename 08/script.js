@@ -16,4 +16,26 @@ let index = 0;
             showImage(index);
         }
 
-document.getElementById('')
+        function updateCounter() {
+            const startDate = new Date('2025-01-09T10:01:00'); // Data de nascimento ou qualquer data inicial que você escolher
+            const currentDate = new Date();
+            const diff = currentDate - startDate;
+        
+            // Calcular os valores para dias, horas, minutos e segundos
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        
+            // Atualizar os elementos do HTML
+            document.getElementById('dias').textContent = days;
+            document.getElementById('horas').textContent = hours;
+            document.getElementById('minutos').textContent = minutes;
+            document.getElementById('segundos').textContent = seconds;
+        }
+        
+        // Atualizar a cada segundo
+        setInterval(updateCounter, 1000);
+        
+        // Inicializa o contador
+        updateCounter();
