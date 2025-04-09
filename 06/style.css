@@ -1,10 +1,17 @@
 @charset "UTF-8";
 
 * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
+  }
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;
 }
+  
 
 body {
     background-color: #b0cddf;
@@ -28,6 +35,8 @@ body {
     transition: left 0.3s ease;
     z-index: 1000;
 }
+
+
 
 #toggleMenu {
     position: fixed;
@@ -91,29 +100,45 @@ body {
 
 }
 
-#home {
-    text-align: center;
-    width: 60vw;
+.container {
+    width: 90%;
+    max-width: 1000px;
     margin: auto;
+    padding: 30px 15px;
+}
+  
+.center {
+    text-align: center;
+}
+  
+.flex-center {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-#home > .noivos {
+#home .noivos {
     font-size: 40px;
-    padding: 30px;
+    color: #4973BF;
+    margin-bottom: 20px;
 }
-
-#home > .text {
-    padding-top: 15px;
+  
+#home .text {
+    font-size: 20px;
     color: #3E4D84;
-    margin: 15px 0px;
+    line-height: 1.5em;
     text-align: justify;
     text-indent: 10px;
-    line-height: 1.5em;
-    font-size: 25px;
 }
 
 .noivos {
     color: #4973BF;
+    text-align: center;
+}
+
+#home > img {
+    padding-bottom: 20px;
 }
 
 #contador {
@@ -121,42 +146,69 @@ body {
     padding: 70px;
 }
 
-#contador > h1 {
+#contador h1 {
     color: #3E4D84;
     font-size: 30px;
-}
+    text-align: center;
+    margin-bottom: 20px;
+  }
 
 #contadorfilho {
     display: flex;
     justify-content: center;
     gap: 20px;
     padding-top: 20px;
-    
 }
 
 .time {
     background-color: #4973BF;
+    color: #D0DBED;
     border-radius: 10px;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .time span {
     display: block;
     padding: 5px;
     color: #D0DBED;
+    font-size: 20px;
 }
 
-.dias, .horas, .minutos, .segundos {
-    font-size: 2rem;
-    
-}
+
 
 #foto {
     background-image: url(img/2.jpg);
     background-repeat: no-repeat;
     background-position: center;
-    background-attachment: fixed;
     background-size: cover;
     height: 600px;
 }
 
+#mapa > h1 {
+    color: #3E4D84;
+    text-align: center;
+    font-size: 30px;
+}
+
+#mapa {
+    text-align: center;
+    padding: 40px 0;
+
+}
+  
+#mapa iframe {
+    width: 80vw;
+    height: 600px;
+    border: none;
+    border-radius: 10px;
+    padding-top: 40px;
+}
+  
+
+  
 

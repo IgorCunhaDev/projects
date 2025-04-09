@@ -15,8 +15,8 @@
             <img src="img/Sem título.png" alt="logo">
             <p>Gabbatha & Igor</p>
             <nav id="sidebar">
-                <a href="#">Home</a>
-                <a href="#">Local</a>
+                <a href="#Home">Home</a>
+                <a href="#Local">Local</a>
                 <a href="#">Lista de presentes</a>
                 <a href="#">Manual dos padrinhos</a>
                 <a href="#">Confirme sua presença</a>
@@ -36,11 +36,10 @@
         <section id="topo">
         </section>
 
-        <section id="home">
-            <article class="noivos">
-                <p>Gabbatha & Igor</p>
-            </article>
-                <img src="img/hearts.png" alt="">
+        <section id="home" class="container center">
+                <p class="noivos">Gabbatha & Igor</p>
+                <img src="img/hearts.png" alt="coraçao">
+                
             <article class="text">
                  <p>Olá! Como já é de conhecimento de todos, em Agosto de 2025 iremos celebrar todo nosso amor e felicidade em um recepção ---------, logicamente, queremos a sua presença! O casamento será pequeno e foi muito difícil fechar a lista de convidados dentre todas as pessoas lindas que fazem parte das nossas vidas, então acredite, você é muito querido e queremos compartilhar esse momento com você!</p><br>
 
@@ -50,34 +49,41 @@
             </article>
         </section>
 
-        <section id="contador">
+        <section id="contador" class="container">
             <h1>Contagem Regressiva</h1>
             <div id="contadorfilho">
-                <div class="time">
-                    <span id="dias">0</span>
-                    <span>Dias</span>
-                </div>
-                <div class="time">
-                    <span id="horas">0</span>
-                    <span>Horas</span>
-                </div>
-                <div class="time">
-                    <span id="minutos">0</span>
-                    <span>Minutos</span>
-                </div>
-                <div class="time">
-                    <span id="segundos">0</span>
-                    <span>Segundos</span>
+                    <div class="time">
+                        <span id="dias">0</span>
+                        <span>Dias</span>
+                    </div>
+                    <div class="time">
+                        <span id="horas">0</span>
+                        <span>Horas</span>
+                    </div>
+                    <div class="time">
+                        <span id="minutos">0</span>
+                        <span>Minutos</span>
+                    </div>
+                    <div class="time">
+                        <span id="segundos">0</span>
+                        <span>Segundos</span>
                 </div>
             </div>
         </section>
 
-
         <section id="foto">
         </section>
         
-       
+        <section id="mapa" class="container">
+            <h1 class = "Local">Localização</h1>
+
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d829.995700930554!2d-35.01949830026112!3d-8.288148531221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7aaeff481466653%3A0xc99676d032cf5dc0!2sR.%20Artur%20Fernandes%20de%20Oliveira%2C%20210%20-%20Garapu%2C%20Cabo%20de%20Santo%20Agostinho%20-%20PE%2C%2054519-040!5e0!3m2!1spt-BR!2sbr!4v1744224765432!5m2!1spt-BR!2sbr" 
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </section>
+
     </main>
     
     <script src="script.js"></script>
