@@ -47,4 +47,8 @@
     #home {
         width: 90vw;
     }
+
+    #home > .text {
+        font-size: 30px;
+    }
 }
