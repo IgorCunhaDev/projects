@@ -11,6 +11,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    const sidebarLinks = document.querySelectorAll('#sidebar a');
+
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.style.left = "-60vw"; // Fecha o menu
+        });
+    });
+
     // Contagem regressiva
     const targetDate = new Date('2025-10-01T00:00:00'); // Data do casamento
 

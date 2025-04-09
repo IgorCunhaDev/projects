@@ -11,8 +11,11 @@ html, body {
     width: 100%;
     overflow-x: hidden;
 }
-  
 
+html {
+    scroll-behavior: smooth;
+  }
+  
 body {
     background-color: #b0cddf;
 }
