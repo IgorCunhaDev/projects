@@ -47,3 +47,28 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(updateCountdown, 1000);
     updateCountdown(); // Chamada inicial para evitar atraso de 1 segundo
 });
+
+
+fetch('presentes.json')
+  .then(response => response.json())
+  .then(presentes => {
+    const container = document.getElementById('lista-presentes');
+
+    presentes.forEach(presente => {
+      const card = document.createElement('div');
+      card.classList.add('card');
+
+      card.innerHTML = `
+        <img src="${presente.imagem}" alt="${presente.nome}">
+        <h2>${presente.nome}</h2>
+        <p>${presente.descricao}</p>
+        <button>Reservar</button>
+      `;
+
+      container.appendChild(card);
+    });
+  })
+  .catch(error => {
+    console.error('Erro ao carregar a lista de presentes:', error);
+  });
+

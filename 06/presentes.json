@@ -1,0 +1,83 @@
+[
+    {
+      "nome": "Conjunto de Panelas",
+      "descricao": "Conjunto com 5 panelas antiaderentes, ideais para o dia a dia.",
+      "imagem": "img/presentes/panelas.jpg"
+    },
+    {
+      "nome": "Liquidificador",
+      "descricao": "Liquidificador potente, ideal para preparar sucos e vitaminas.",
+      "imagem": "img/presentes/liquidificador.jpg"
+    },
+    {
+      "nome": "Micro-ondas",
+      "descricao": "Micro-ondas com diversas funções e designs modernos.",
+      "imagem": "img/presentes/microondas.jpg"
+    },
+    {
+      "nome": "Ferro de Passar",
+      "descricao": "Ferro a vapor de alta performance para roupas sempre bem cuidadas.",
+      "imagem": "img/presentes/ferro.jpg"
+    },
+    {
+      "nome": "Jogo de Cama",
+      "descricao": "Conjunto com 2 fronhas, lençóis e colcha em tecido macio.",
+      "imagem": "img/presentes/jogo_de_cama.jpg"
+    },
+    {
+      "nome": "Cafeteira Elétrica",
+      "descricao": "Cafeteira elétrica com filtro permanente e design moderno.",
+      "imagem": "img/presentes/cafeteira.jpg"
+    },
+    {
+      "nome": "Jogo de Copos",
+      "descricao": "Conjunto de copos de vidro, perfeito para qualquer ocasião.",
+      "imagem": "img/presentes/jogo_de_copos.jpg"
+    },
+    {
+      "nome": "Escorredor de Louça",
+      "descricao": "Escorredor de louça em inox, compacto e eficiente.",
+      "imagem": "img/presentes/escorredor.jpg"
+    },
+    {
+      "nome": "Jogo de Facas",
+      "descricao": "Conjunto de facas de cozinha com lâminas de aço inoxidável.",
+      "imagem": "img/presentes/jogo_de_facas.jpg"
+    },
+    {
+      "nome": "Máquina de Lavar Roupas",
+      "descricao": "Máquina de lavar roupas com capacidade grande e funções especiais.",
+      "imagem": "img/presentes/maquina_lavar.jpg"
+    },
+    {
+      "nome": "airfryer",
+      "descricao": "A Airfryer é uma fritadeira sem óleo  ",
+      "imagem": "img/presentes/airfryer.jpg"
+    },
+    {
+      "nome": "Geladeira",
+      "descricao": "A Airfryer é uma fritadeira sem óleo  ",
+      "imagem": "img/presentes/geladeira.jpg"
+    },
+    {
+      "nome": "Fogão",
+      "descricao": "A Airfryer é uma fritadeira sem óleo  ",
+      "imagem": "img/presentes/fogao.jpg"
+    },
+    {
+      "nome": "Televisão",
+      "descricao": "A Airfryer é uma fritadeira sem óleo  ",
+      "imagem": "img/presentes/tv.jpg"
+    },
+    {
+      "nome": "Cama",
+      "descricao": "A Airfryer é uma fritadeira sem óleo  ",
+      "imagem": "img/presentes/cama.jpg"
+    },
+    {
+      "nome":"Sofá",
+      "Descrição": "",
+      "imagem": "img/presentes/sofa.jpg"
+    }
+  ]
+  
