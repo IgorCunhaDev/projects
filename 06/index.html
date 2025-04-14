@@ -17,7 +17,7 @@
             <nav id="sidebar">
                 <a href="#home">Home</a>
                 <a href="#mapa">Local</a>
-                <a href="#">Lista de presentes</a>
+                <a href="#presente">Lista de presentes</a>
                 <a href="#">Manual dos padrinhos</a>
                 <a href="#">Confirme sua presença</a>
             </nav>
@@ -27,7 +27,7 @@
             <nav id="menu">
                 <a href="#home">Home</a>
                 <a href="#mapa">Local</a>
-                <a href="#">Lista de presentes</a>
+                <a href="#presente">Lista de presentes</a>
                 <a href="#">Manual dos padrinhos</a>
                 <a href="#">Confirme sua presença</a>
             </nav>
@@ -74,19 +74,30 @@
         <section id="foto">
         </section>
         
-        <section id="mapa" >
-            <h1 class = "titulos">Localização</h1>
-
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d829.995700930554!2d-35.01949830026112!3d-8.288148531221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7aaeff481466653%3A0xc99676d032cf5dc0!2sR.%20Artur%20Fernandes%20de%20Oliveira%2C%20210%20-%20Garapu%2C%20Cabo%20de%20Santo%20Agostinho%20-%20PE%2C%2054519-040!5e0!3m2!1spt-BR!2sbr!4v1744224765432!5m2!1spt-BR!2sbr" 
-            loading="lazy"
-            allowfullscreen
-            referrerpolicy="no-referrer-when-downgrade">
+        <section id="mapa">
+            <h1 class="titulos">Localização</h1>
+         
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d829.995700930554!2d-35.01949830026112!3d-8.288148531221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7aaeff481466653%3A0xc99676d032cf5dc0!2sR.%20Artur%20Fernandes%20de%20Oliveira%2C%20210%20-%20Garapu%2C%20Cabo%20de%20Santo%20Agostinho%20-%20PE%2C%2054519-040!5e0!3m2!1spt-BR!2sbr!4v1744224765432!5m2!1spt-BR!2sbr"
+               loading="lazy"
+               allowfullscreen
+               referrerpolicy="no-referrer-when-downgrade">
             </iframe>
-        </section>
+         
+            <div class="rotas">
+               <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Artur+Fernandes+de+Oliveira,+210,+Cabo+de+Santo+Agostinho+-+PE" target="_blank">
+                  <button class="botao-mapa">Abrir no Google Maps</button>
+               </a>
+         
+               <a href="https://waze.com/ul?ll=-8.288148531221,-35.01949830026112&navigate=yes" target="_blank">
+                  <button class="botao-mapa">Abrir no Waze</button>
+               </a>
+            </div>
+         </section>
+         
 
-        <section>
+        <section id="presente">
             <h1 class="titulos">Lista de Presentes</h1>
-            <div class="cards-container" id="lista-presentes"></section>div>
+            <div class="cards-container" id="lista-presentes"></div>
         </section>
 
     </main>

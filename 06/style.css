@@ -218,8 +218,32 @@ body {
     border-radius: 10px;
     padding-top: 40px;
 }
-  
 
+.rotas {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+ }
+ 
+ .botao-mapa {
+    display: inline-block; /* Isso garante que o botão seja exibido corretamente */
+    background-color: #4973BF;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.botao-mapa:hover {
+    background-color: #3E4D84;
+}
+ 
 
 .cards-container {
     display: grid;
@@ -229,7 +253,6 @@ body {
     justify-items: center;
 }
 
-  
 .card {
     background-color: #ffffff;
     border-radius: 12px;
