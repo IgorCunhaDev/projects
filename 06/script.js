@@ -62,54 +62,13 @@ fetch('presentes.json')
         <img src="${presente.imagem}" alt="${presente.nome}">
         <h2>${presente.nome}</h2>
         <p>${presente.descricao}</p>
-        <button onclick="reservarPresente(${presente.id})" ${presente.reservado ? 'disabled' : ''}>Presentear</button>
+        <button onclick="reservarPresente(${presente.id})" ${presente.reservado ? 'disabled' : ''}>
+          ${presente.reservado ? 'Reservado' : 'Presentear'}
+        </button>
       `;
 
       container.appendChild(card);
     });
-  })
-  .catch(error => {
-    console.error('Erro ao carregar a lista de presentes:', error);
   });
-
-// Função para marcar o presente como reservado
-function reservarPresente(id) {
-  // Carregar o arquivo JSON com os presentes
-  fetch('presentes.json')
-    .then(response => response.json())
-    .then(presentes => {
-      // Encontrar o presente pelo ID
-      const presente = presentes.find(p => p.id === id);
-
-      if (presente) {
-        presente.reservado = true;  // Marca como reservado
-
-        // Atualiza a interface (remover o botão ou desabilitá-lo)
-        const container = document.getElementById('lista-presentes');
-        container.innerHTML = '';  // Limpa o conteúdo atual
-
-        // Recarregar a lista com os presentes atualizados
-        presentes.forEach(presente => {
-          const card = document.createElement('div');
-          card.classList.add('card');
-
-          card.innerHTML = `
-            <img src="${presente.imagem}" alt="${presente.nome}">
-            <h2>${presente.nome}</h2>
-            <p>${presente.descricao}</p>
-            <button onclick="reservarPresente(${presente.id})" ${presente.reservado ? 'disabled' : ''}>Presentear</button>
-          `;
-
-          container.appendChild(card);
-        });
-
-        // Aqui você pode adicionar lógica para salvar os dados de volta no JSON ou Google Sheets
-        console.log(`Presente "${presente.nome}" foi reservado!`);
-      }
-    })
-    .catch(error => {
-      console.error('Erro ao atualizar os presentes:', error);
-    });
-}
 
 

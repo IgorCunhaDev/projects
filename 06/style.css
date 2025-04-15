@@ -248,24 +248,28 @@ body {
 .cards-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    max-width: 1200px; /* limita a largura total da grid */
+    margin: 0 auto; /* centraliza a grid na página */
     gap: 20px;
     padding: 40px 20px;
     justify-items: center;
 }
 
+
 .card {
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    width: 70%; /* Agora o width vai ocupar 100% da coluna */
+    width: 100%; 
     text-align: left;
     overflow: hidden;
     transition: transform 0.2s ease;
     display: flex;
     flex-direction: column;
-    min-height: 300px; /* Define a altura mínima do card */
+    min-height: 300px;
+    justify-content: space-between;
 }
-  
+
 .card:hover {
     transform: translateY(-5px);
 }
@@ -274,13 +278,15 @@ body {
     width: 100%;
     height: 180px;
     object-fit: cover;
+    border-radius: 10px;
 }
 
 .card h2 {
-    font-size: 1.1em;
-    color: #3E4D84;
-    margin: 15px;
-}
+    font-size: 20px;
+    margin: 15px 0 10px;
+    color: #333;
+    text-align: center;
+  }
 
 .card p {
     color: #555;
