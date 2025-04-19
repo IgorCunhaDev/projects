@@ -72,3 +72,24 @@ fetch('presentes.json')
   });
 
 
+fetch('padrinhos.json')
+  .then(response => response.json())
+  .then(padrinhos => {
+    const container = document.getElementById("cards-padrinhos");
+
+    padrinhos.forEach(padrinho => {
+      const card = document.createElement("div");
+      card.classList.add("card");
+
+      card.innerHTML = `
+        <img src="${padrinho.foto}" alt="${padrinho.nome}">
+        <h2>${padrinho.nome}</h2>
+      `;
+
+      container.appendChild(card);
+    });
+  })
+  .catch(error => {
+    console.error("Erro ao carregar padrinhos:", error);
+  });
+
