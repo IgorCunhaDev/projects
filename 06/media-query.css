@@ -42,7 +42,7 @@
     }
 
     .card img {
-        width: 100%;
+        width: 70%;
     }
 }
 
@@ -76,9 +76,9 @@
       height: 80px;
     }
   
-    .time span {
-      font-size: 16px;
-    }
+   .time .texto {
+    font-size: 15px;
+   }
 
     .cards-container, .cards-wrapper {
         grid-template-columns: repeat(2, 1fr);

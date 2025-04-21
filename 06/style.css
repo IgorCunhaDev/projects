@@ -55,6 +55,7 @@ html, body {
     border-radius: 5px;
     cursor: pointer;
     z-index: 1100;
+    width: 70px;
 }
 
 #toggleMenu:hover {
@@ -147,28 +148,35 @@ html, body {
 }
 
 #contador {
+    display: flex;
     background-color: #b0cddf;
     text-align: center;
-    padding: 70px;
+    width: 100%;
+    height: 350px;
+    justify-content: space-evenly;
+    flex-direction: column;
 }
 
 #contador h1 {
     color: #3E4D84;
     text-align: center;
+    font-size: 36px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+
 }
 
 #contadorfilho {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    padding-top: 20px;
+    gap: 16px;
 }
 
 .time {
     background-color: #4973BF;
     color: #D0DBED;
     border-radius: 10px;
-    width: 150px;
+    width: 100px;
     height: 100px;
     display: flex;
     flex-direction: column;
@@ -178,13 +186,14 @@ html, body {
 
 .time span {
     display: block;
-    padding: 5px;
     color: #D0DBED;
     font-size: 30px;
     font-weight: bold;
 }
 
-
+.time .texto {
+    font-size: 20px;
+}
 
 #foto {
     background-image: url(img/2.jpg);
@@ -265,6 +274,7 @@ html, body {
     align-items: center;
     justify-content: flex-end;
     transition: transform 0.2s ease;
+    padding-top: 20px;
 }
 
 .card:hover {
@@ -277,17 +287,10 @@ html, body {
     border-radius: 8px;
 }
 
-.card h2 {
-    font-size: 20px;
-    margin: 15px 0 10px;
-    color: #333;
-    text-align: center;
-}
-
 .card p {
     color: #555;
-    font-size: 0.95em;
-    margin: 0 15px 15px;
+    font-size: 1.3em;
+    margin: 15px 15px 10px;
 }
 
 .card button {
@@ -308,6 +311,11 @@ html, body {
     background-color: #3E4D84;
 }
 
+.preco {
+    font-weight: bold;
+    margin: 5px 0;
+  }
+  
 .padrinhos-container .card img {
     width: 200px;  /* Define a largura da imagem */
     height: 200px; /* Define a altura da imagem */

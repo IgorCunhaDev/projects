@@ -58,10 +58,15 @@ fetch('presentes.json')
       const card = document.createElement('div');
       card.classList.add('card');
 
+      const valorFormatado = presente.valor.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+      });
+
       card.innerHTML = `
         <img src="${presente.imagem}" alt="${presente.nome}">
-        <h2>${presente.nome}</h2>
-        <p>${presente.descricao}</p>
+        <p>${presente.nome}</p>
+        <p class="preco">${valorFormatado}</p>
         <button onclick="reservarPresente(${presente.id})" ${presente.reservado ? 'disabled' : ''}>
           ${presente.reservado ? 'Reservado' : 'Presentear'}
         </button>
