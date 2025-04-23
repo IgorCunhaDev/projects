@@ -1,3 +1,34 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDZYRZwahyKBMaORKtItntC6WoAbQcCKTQ",
+  authDomain: "casamento-48661.firebaseapp.com",
+  projectId: "casamento-48661",
+  storageBucket: "casamento-48661.firebasestorage.app",
+  messagingSenderId: "391104692884",
+  appId: "1:391104692884:web:b69c3149949d2da8ba2a81"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+export async function salvarReserva(nome, email, presente) {
+  try {
+    await addDoc(collection(db, "reservas"), {
+      nome,
+      email,
+      presente,
+      data: new Date()
+    });
+    console.log("Reserva salva!");
+  } catch (e) {
+    console.error("Erro ao salvar reserva: ", e);
+  }
+}
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
   const toggleMenuBtn = document.getElementById('toggleMenu');
   const menu = document.getElementById('mobile');
@@ -57,10 +88,13 @@ const targetDate = new Date('2025-10-01T00:00:00');
 
 
 // Função chamada ao clicar no botão "Presentear"
-function reservarPresente(id) {
-  window.presenteSelecionado = id; // Guarda o ID do presente
+function reservarPresente(nome) {
+  window.presenteSelecionado = nome; // Guarda o nome do presente
   abrirModal(); // Abre o modal
 }
+
+window.reservarPresente = reservarPresente;
+
 
 // Função para abrir o modal
 function abrirModal() {
@@ -76,12 +110,17 @@ function fecharModal() {
   setTimeout(() => {
     modal.style.display = 'none'; // Esconde após a animação
   }, 300); // Tempo em ms deve ser igual ao duration do CSS
-
+  
+  // Limpar os campos após o fechamento do modal
   document.getElementById('nome-presenteador').value = '';
   document.getElementById('email-presenteador').value = '';
   document.getElementById('mensagem-sucesso').style.display = 'none';
   document.getElementById('btn-pagar').style.display = 'none';
 }
+
+// Garantir que a função está acessível
+window.fecharModal = fecharModal;
+
 
 
 // Função para validar o formato do e-mail
@@ -90,35 +129,43 @@ function validarEmail(email) {
   return regex.test(email);
 }
 
-// Lógica para o botão de confirmação
-document.getElementById('confirmar-presente').addEventListener('click', function() {
+document.getElementById('confirmar-presente').addEventListener('click', async function () {
   const nome = document.getElementById('nome-presenteador').value.trim();
   const email = document.getElementById('email-presenteador').value.trim();
+  const presente = window.presenteSelecionado; // Agora é o nome do presente
 
-  // Verificar se os campos nome e e-mail não estão vazios
   if (nome === "" || email === "") {
     alert("Por favor, preencha todos os campos.");
   } else if (!validarEmail(email)) {
     alert("Por favor, insira um e-mail válido.");
+  } else if (!presente) {
+    alert("Erro ao identificar o presente selecionado.");
   } else {
-    // Exibe a mensagem de sucesso dentro do modal
-    const mensagemSucesso = document.getElementById('mensagem-sucesso');
-    mensagemSucesso.style.display = 'block';
-    mensagemSucesso.innerHTML = `O presente foi reservado com sucesso!`;
+    try {
+      await salvarReserva(nome, email, presente); // Salva o nome do presente no banco de dados
 
-    // Exibe o botão de pagamento dentro do modal
-    document.getElementById('btn-pagar').style.display = 'block';
+      const mensagemSucesso = document.getElementById('mensagem-sucesso');
+      mensagemSucesso.style.display = 'block';
+      mensagemSucesso.innerHTML = `O presente foi reservado com sucesso!`;
 
-    // Fechar o modal após a confirmação
-    // Não estamos fechando o modal ainda, pois a mensagem e o botão permanecem no modal.
+      document.getElementById('btn-pagar').style.display = 'block';
+    } catch (e) {
+      alert("Erro ao salvar reserva. Tente novamente.");
+    }
   }
 });
 
+
+
 // Função para redirecionar para o Mercado Pago
 function continuarPagamento() {
-  // Substitua 'ID_DO_PAGAMENTO' por um ID real do pagamento
+  // Substitua o link abaixo pelo link correto do Mercado Pago
   window.location.href = "https://mpago.la/2kd9gDg";
 }
+
+// Garantir que a função está acessível
+window.continuarPagamento = continuarPagamento;
+
 
 
 fetch('presentes.json')
@@ -129,23 +176,23 @@ fetch('presentes.json')
     presentes.forEach(presente => {
       const card = document.createElement('div');
       card.classList.add('card');
-
+    
       const valorFormatado = presente.valor.toLocaleString('pt-BR', {
         style: 'currency',
         currency: 'BRL'
       });
-
+    
       card.innerHTML = `
         <img src="${presente.imagem}" alt="${presente.nome}">
         <p>${presente.nome}</p>
         <p class="preco">${valorFormatado}</p>
-        <button onclick="reservarPresente(${presente.id})" ${presente.reservado ? 'disabled' : ''}>
+        <button onclick="reservarPresente('${presente.nome}')" ${presente.reservado ? 'disabled' : ''}>
           ${presente.reservado ? 'Reservado' : 'Presentear'}
         </button>
       `;
-
+    
       container.appendChild(card);
-    });
+    });    
   });
 
 
