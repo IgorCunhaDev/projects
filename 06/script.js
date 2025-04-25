@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyDZYRZwahyKBMaORKtItntC6WoAbQcCKTQ",
@@ -61,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   // Contagem regressiva
-const targetDate = new Date('2025-10-01T00:00:00');
+const targetDate = new Date('2025-10-23T00:00:00');
 
   function updateCountdown() {
       const now = new Date();
@@ -216,3 +217,39 @@ fetch('padrinhos.json')
   .catch(error => {
     console.error("Erro ao carregar padrinhos:", error);
   });
+
+
+  const form = document.getElementById('form-comentario');
+  const lista = document.getElementById('lista-comentarios');
+  
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const nome = document.getElementById('nome').value.trim();
+    const mensagem = document.getElementById('mensagem').value.trim();
+  
+    if (nome && mensagem) {
+      try {
+        await addDoc(collection(db, 'comentarios'), {
+          nome,
+          mensagem,
+          timestamp: serverTimestamp()
+        });
+        form.reset();
+      } catch (error) {
+        console.error('Erro ao enviar comentário:', error);
+      }
+    }
+  });
+  
+  // Escutar em tempo real
+  const q = query(collection(db, 'comentarios'), orderBy('timestamp', 'desc'));
+  onSnapshot(q, (snapshot) => {
+    lista.innerHTML = '';
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const div = document.createElement('div');
+      div.innerHTML = `<strong>${data.nome}</strong><p>${data.mensagem}</p>`;
+      lista.appendChild(div);
+    });
+  });
+  
