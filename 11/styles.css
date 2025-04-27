@@ -13,7 +13,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   margin: 0;
   padding: 20px;
   animation: fadeIn 2s ease-out; /* Aplica a animação ao body */
