@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Modal de Login -->
+  <div id="loginModal" style="display: block;">
+    <div class="modal-content">
+      <h2>Login Administrativo</h2>
+      <input type="email" id="email" placeholder="E-mail" required />
+      <input type="password" id="password" placeholder="Senha" required />
+      <button id="loginBtn">Login</button>
+      <p id="loginError"></p>
+    </div>
+  </div>
+
+  <header>
+    <h1 style="text-align: center;">Painel Administrativo</h1>
+    <nav>
+      <a href="#reservas">Reservas de Presentes</a>
+      <a href="#comentarios">Comentários</a>
+    </nav>
+  </header>
+  
+  <main>
+    <!-- Seção Reservas de Presentes -->
+    <section id="reservas">
+      <h2>Reservas de Presentes</h2>
+      <ul id="lista-reservas"></ul>
+    </section>
+
+    <!-- Seção Comentários -->
+    <section id="comentarios">
+      <h2>Comentários</h2>
+      <ul id="lista-comentarios"></ul>
+    </section>
+  </main>
+
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>
