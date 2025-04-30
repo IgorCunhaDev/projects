@@ -20,31 +20,47 @@ const db = getFirestore(app);
 const ADMIN_EMAIL = "gabbathaigor@gmail.com"; // E-mail do administrador
 const ADMIN_PASSWORD = "84861963Ic"; // Senha do administrador
 
-// Login de usuário (apenas um login permitido)
-document.getElementById("loginBtn").addEventListener("click", async () => {
-  const email = document.getElementById("email").value;
-  const senha = document.getElementById("password").value;
-  const erro = document.getElementById("loginError");
+// Função para inicializar a página administrativa após login
+function iniciarPainel() {
+  document.getElementById("loginModal").style.display = "none"; // Fecha o modal de login
+  document.getElementById("wrapper").style.display = "flex"; // Exibe o painel administrativo
+  listarReservas(); // Listar reservas
+  listarComentarios(); // Listar comentários
+}
 
-  // Verifica se o email e senha são os definidos
-  if (email === ADMIN_EMAIL && senha === ADMIN_PASSWORD) {
-    try {
-      // Loga diretamente sem usar o Firebase Auth, já que são fixos
-      erro.textContent = "";
-      document.getElementById("loginModal").style.display = "none"; // Fecha o modal após login
-      iniciarPainel(); // Função que pode carregar o painel administrativo
-    } catch (err) {
-      erro.textContent = "Erro no login. Tente novamente.";
-    }
+
+// Login de usuário (apenas um login permitido)
+// Login de usuário (apenas um login permitido)
+document.addEventListener('DOMContentLoaded', () => {
+  const loginBtn = document.getElementById("loginBtn");
+
+  if (loginBtn) {
+    loginBtn.addEventListener("click", async () => {
+      const email = document.getElementById("email").value;
+      const senha = document.getElementById("password").value;
+      const erro = document.getElementById("loginError");
+
+      // Verifique se o email e senha estão corretos
+      if (email === ADMIN_EMAIL && senha === ADMIN_PASSWORD) {
+        try {
+          erro.textContent = "";
+          iniciarPainel(); // Função para carregar o painel administrativo
+        } catch (err) {
+          erro.textContent = "Erro no login. Tente novamente.";
+        }
+      } else {
+        erro.textContent = "Email ou senha incorretos.";
+      }
+    });
   } else {
-    erro.textContent = "Email ou senha incorretos.";
+    console.error("Elemento com ID 'loginBtn' não encontrado.");
   }
 });
+
 
 // Verificação de estado do usuário (login ou logout)
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    document.getElementById("loginModal").style.display = "none";
     iniciarPainel();
   }
 });
@@ -53,23 +69,28 @@ onAuthStateChanged(auth, (user) => {
 async function listarReservas() {
   const reservasRef = collection(db, "reservas");
   const querySnapshot = await getDocs(reservasRef);
-  const listaReservas = document.getElementById('lista-reservas');
-  listaReservas.innerHTML = ''; // Limpa a lista antes de preencher
+  const listaReservas = document.getElementById('lista-reservas-ul');
+  listaReservas.innerHTML = ''; // Limpa apenas a UL
 
+  let index = 0;
   querySnapshot.forEach(doc => {
     const reserva = doc.data();
     const li = document.createElement('li');
     li.innerHTML = `
-      <strong>${reserva.nome}</strong> <strong>(${reserva.email})</strong> <br> reservou o presente: ${reserva.presente} 
+      <strong>${reserva.nome}</strong> <strong>(${reserva.email})</strong><br> reservou o presente: ${reserva.presente}
     `;
-    
-    // Criar o botão de excluir e adicionar o ouvinte de evento
+    li.style.padding = '12px';
+    li.style.marginBottom = '6px';
+    li.style.backgroundColor = index % 2 === 0 ? '#e9f1f6' : '#ffffff';
+
     const btnExcluir = document.createElement('button');
     btnExcluir.textContent = 'Excluir';
-    btnExcluir.addEventListener('click', () => excluirReserva(doc.id)); // Adiciona o ouvinte de evento
+    btnExcluir.style.marginLeft = '10px';
+    btnExcluir.addEventListener('click', () => excluirReserva(doc.id));
     li.appendChild(btnExcluir);
 
     listaReservas.appendChild(li);
+    index++;
   });
 }
 
@@ -92,21 +113,26 @@ async function excluirReserva(reservaId) {
 async function listarComentarios() {
   const comentariosRef = collection(db, "comentarios");
   const querySnapshot = await getDocs(comentariosRef);
-  const listaComentarios = document.getElementById('lista-comentarios');
-  listaComentarios.innerHTML = ''; // Limpa antes de preencher
+  const listaComentarios = document.getElementById('lista-comentarios-ul');
+  listaComentarios.innerHTML = ''; // Limpa apenas a UL
 
+  let index = 0;
   querySnapshot.forEach(doc => {
     const comentario = doc.data();
     const li = document.createElement('li');
-    li.innerHTML = `<strong>${comentario.nome}:</strong> ${comentario.mensagem} `;
+    li.innerHTML = `<strong>${comentario.nome}:</strong> ${comentario.mensagem}`;
+    li.style.padding = '12px';
+    li.style.marginBottom = '6px';
+    li.style.backgroundColor = index % 2 === 0 ? '#e9f1f6' : '#ffffff';
 
-    // Criar o botão de excluir e adicionar o ouvinte de evento
     const btnExcluir = document.createElement('button');
     btnExcluir.textContent = 'Excluir';
-    btnExcluir.addEventListener('click', () => excluirComentario(doc.id)); // Adiciona o ouvinte de evento
+    btnExcluir.style.marginLeft = '10px';
+    btnExcluir.addEventListener('click', () => excluirComentario(doc.id));
     li.appendChild(btnExcluir);
 
     listaComentarios.appendChild(li);
+    index++;
   });
 }
 
@@ -125,8 +151,72 @@ async function excluirComentario(comentarioId) {
   }
 }
 
-// Inicializa as funções ao carregar a página
+// Alternando entre seções com base no item selecionado do menu lateral
 document.addEventListener('DOMContentLoaded', () => {
-  listarReservas();
-  listarComentarios();
+  const reservasBtn = document.getElementById("reservasBtn");
+  const comentariosBtn = document.getElementById("comentariosBtn");
+  const configuracoesBtn = document.getElementById("configuracoesBtn");
+
+  reservasBtn.addEventListener("click", () => {
+    mostrarSecao("lista-reservas");
+  });
+
+  comentariosBtn.addEventListener("click", () => {
+    mostrarSecao("lista-comentarios");
+  });
+
+  configuracoesBtn.addEventListener("click", () => {
+    mostrarSecao("configuracoes");
+  });
+
+  // Função para mostrar a seção correta
+  function mostrarSecao(secaoId) {
+    const secoes = document.querySelectorAll(".content-section");
+    secoes.forEach(secao => {
+      if (secao.id === secaoId) {
+        secao.style.display = "block";
+      } else {
+        secao.style.display = "none";
+      }
+    });
+  }
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleSidebarBtn = document.createElement('button');
+  toggleSidebarBtn.textContent = '☰';
+  toggleSidebarBtn.classList.add('toggle-sidebar');
+
+  document.body.appendChild(toggleSidebarBtn);
+
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay'); // Defina o overlay no JS também
+  const botaoFixo = document.getElementById('botao-fixo'); // Caso você tenha um botão fixo
+
+  // Abre ou fecha o sidebar
+  toggleSidebarBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('active'); // Alterna a classe 'active' no sidebar
+    const ativo = sidebar.classList.contains('active');
+    overlay.style.display = ativo ? 'block' : 'none';
+    botaoFixo.style.display = ativo ? 'none' : 'block'; // Esconde o botão fixo quando o menu está aberto
+  });
+
+  // Fechar o sidebar ao clicar no overlay
+  overlay.addEventListener('click', () => {
+    sidebar.classList.remove('active'); // Remove a classe 'active' do sidebar
+    overlay.style.display = 'none'; // Oculta o overlay
+    botaoFixo.style.display = 'block'; // Mostra o botão fixo novamente
+  });
+
+  // Fechar o sidebar ao clicar em qualquer item do menu
+  const menuItems = document.querySelectorAll('#sidebar .components li a');
+  menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      sidebar.classList.remove('active'); // Remove a classe 'active' do sidebar
+      overlay.style.display = 'none'; // Oculta o overlay
+      botaoFixo.style.display = 'block'; // Mostra o botão fixo novamente
+    });
+  });
+});
+

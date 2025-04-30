@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painel Administrativo</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Modal de Login -->
   <div id="loginModal">
     <div class="modal-content">
       <h2>Login Administrativo</h2>
@@ -19,28 +18,42 @@
     </div>
   </div>
 
-  <header>
-    <h1 style="text-align: center;">Painel Administrativo</h1>
-    <nav>
-      <a href="#reservas">Reservas de Presentes</a>
-      <a href="#comentarios">Comentários</a>
-    </nav>
-  </header>
-  
-  <main>
-    <!-- Seção Reservas de Presentes -->
-    <section id="reservas">
-      <h2>Reservas de Presentes</h2>
-      <ul id="lista-reservas"></ul>
+  <div id="wrapper" style="display: flex;justify-content: center;">
+    <div id="overlay"></div>
+      <!-- Menu Lateral -->
+      <nav id="sidebar">
+          <div class="sidebar-header">
+              <h3>Painel Admin</h3>
+          </div>
+          <ul class="list-unstyled components">
+              <li>
+                  <a href="#" id="reservasBtn">Reservas</a>
+              </li>
+              <li>
+                  <a href="#" id="comentariosBtn">Comentários</a>
+              </li>
+              <li>
+                  <a href="#" id="configuracoesBtn">Configurações</a>
+              </li>
+              <li>
+                  <a href="#">Sair</a>
+              </li>
+          </ul>
+      </nav>
+      <!-- Conteúdo Principal -->
+    <section id="lista-reservas" class="content-section">
+        <h2>Reservas</h2>
+        <p>Aqui você pode ver as reservas feitas.</p>
+        <ul id="lista-reservas-ul"></ul>
     </section>
-
-    <!-- Seção Comentários -->
-    <section id="comentarios">
-      <h2>Comentários</h2>
-      <ul id="lista-comentarios"></ul>
+        
+    <section id="lista-comentarios" class="content-section" style="display: none;">
+        <h2>Comentários</h2>
+        <p>Aqui você pode ver os comentários feitos.</p>
+        <ul id="lista-comentarios-ul"></ul>
     </section>
-  </main>
+  </div>
+    <script type="module" src="admin.js"></script>
 
-  <script type="module" src="admin.js"></script>
 </body>
 </html>
