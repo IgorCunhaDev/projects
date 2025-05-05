@@ -56,6 +56,16 @@ document.addEventListener('DOMContentLoaded', function () {
           menu.style.left = '-60vw';
       }
   });
+  // Fecha o menu ao clicar em qualquer item do menu lateral
+const menuLinks = document.querySelectorAll('#mobile a');
+
+menuLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    menuOverlay.classList.remove('active');
+    menu.style.left = '-60vw';
+  });
+});
+
 });
 
 

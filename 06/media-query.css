@@ -83,6 +83,10 @@
     .cards-container, .cards-wrapper {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .card p {
+        font-size: 1.1em;
+    }
   }
 
   

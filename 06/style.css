@@ -1,10 +1,22 @@
-@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Kaushan+Script&family=Montserrat:wght@400;700&family=Passero+One&family=Passion+One:wght@400;700;900&family=Pinyon+Script&family=Sriracha&display=swap');
+
+:root {
+  --cor-primaria: #4973BF;
+  --cor-secundaria: #D0DBED;
+  --cor-destaque: #3E4D84;
+
+  --branco: #ffffff;
+  --preto: #000000;
+  --cinza-claro: #f5f5f5;
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Cardo", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 html, body {
@@ -13,8 +25,11 @@ html, body {
   scroll-behavior: smooth;
 }
 
+
+
 .titulos, #titulos {
-  font-family: 'Georgia', serif;
+  font-family: 'Montserrat', cursive, Arial, Helvetica, sans-serif;
+  font-weight: 400;
   color: #3E4D84;
   font-size: 36px;
   text-align: center;
@@ -44,8 +59,8 @@ html, body {
   position: fixed;
   top: 20px;
   right: 20px;
-  background-color: #4973BF;
-  color: #D0DBED;
+  background-color: var(--cor-primaria);
+  color: var(--cor-secundaria);
   border: none;
   padding: 10px;
   font-size: 20px;
@@ -56,7 +71,7 @@ html, body {
 }
 
 #toggleMenu:hover {
-  background-color: #869DD7;
+  background-color: var(--cor-destaque);
 }
 
 #mobile > img {
@@ -66,33 +81,30 @@ html, body {
 }
 
 #mobile > p {
-  color: #D0DBED;
+  color: var(--cor-secundaria);
   padding: 10px 0px 40px 24px;
   font-size: 25px;
-  border-bottom: 2px solid #0859e4;
+  border-bottom: 2px solid var(--cor-destaque);
 }
 
 #menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    z-index: 900;
-  }
-  
-  #menu-overlay.active {
-    opacity: 1;
-    pointer-events: all;
-  }
-  
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 900;
+}
 
-
+#menu-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+  
 #sidebar {
   display: flex;
   flex-direction: column;
@@ -101,7 +113,7 @@ html, body {
 }
 
 #sidebar > a {
-  color: #D0DBED;
+  color: var(--cor-secundaria);
   text-decoration: none;
   font-size: 16px;
   padding: 15px 24px;
@@ -109,8 +121,8 @@ html, body {
 }
 
 #sidebar > a:hover {
-  background-color: #869DD7;
-  color: #3E4D84;
+  background-color: var(--cor-secundaria);
+  color: var(--cor-primaria);
 }
 
 #topo {
@@ -141,8 +153,10 @@ html, body {
 }
 
 #home .noivos {
-  font-size: 40px;
-  color: #4973BF;
+  font-family: "Pinyon Script", cursive;
+  font-size: 60px;
+  font-weight: 400;
+  color: var(--cor-primaria);
   margin-bottom: 20px;
 }
 
@@ -164,6 +178,7 @@ html, body {
 }
 
 #contador {
+  font-family: 'mont';
   display: flex;
   background-color: #b0cddf;
   text-align: center;
@@ -174,6 +189,7 @@ html, body {
 }
 
 #contador h1 {
+  font-family: 'Montserrat', cursive, Arial, Helvetica, sans-serif;
   color: #3E4D84;
   text-align: center;
   font-size: 36px;
@@ -184,12 +200,12 @@ html, body {
 #contadorfilho {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 15px;
 }
 
 .time {
-  background-color: #4973BF;
-  color: #D0DBED;
+  background-color: var(--cor-primaria);
+  color: var(--cor-secundaria);
   border-radius: 10px;
   width: 100px;
   height: 100px;
@@ -247,8 +263,8 @@ html, body {
 
 .botao-mapa {
   display: inline-block;
-  background-color: #4973BF;
-  color: white;
+  background-color: var(--cor-primaria);
+  color: var(--branco);
   border: none;
   padding: 12px 24px;
   font-size: 16px;
@@ -259,7 +275,7 @@ html, body {
 }
 
 .botao-mapa:hover {
-  background-color: #3E4D84;
+  background-color: var(--cor-destaque);
 }
 
 /* Overlay do modal (fundo escurecido) */
@@ -481,6 +497,7 @@ html, body {
 #comentarios h2 {
   text-align: center;
   margin-bottom: 20px;
+  padding: 0px;
 }
 
 #form-comentario {
@@ -499,7 +516,7 @@ html, body {
 
 #form-comentario button {
   padding: 10px;
-  background-color: #7a5cf0;
+  background-color: var(--cor-primaria);
   color: white;
   border: none;
   border-radius: 6px;
@@ -530,4 +547,27 @@ html, body {
   display: block;
   margin-bottom: 5px;
   color: #333;
+}
+
+.final {
+  display: flex;
+  background-color: #b0cddf;
+  text-align: center;
+  height: 100px;
+  font-size: 20px;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Montserrat', cursive, Arial, Helvetica, sans-serif;
+  color: #3E4D84;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: darkgrey;
+  color: white;
+  margin-top: 30px;
+  height: 40px;
+  text-align: center;
 }
