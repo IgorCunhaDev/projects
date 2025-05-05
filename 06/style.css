@@ -152,6 +152,14 @@ html, body {
   gap: 20px;
 }
 
+#home .noivos {
+  font-family: "Pinyon Script", cursive;
+  font-size: 60px;
+  font-weight: 400;
+  color: var(--cor-primaria);
+  margin-bottom: 20px;
+}
+
 #home .text {
   font-size: 20px;
   color: #3E4D84;
