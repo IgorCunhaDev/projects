@@ -1,0 +1,130 @@
+[
+  {
+    "id": 1,
+    "nome": "Conjunto de Panelas",
+    "imagem": "img/presentes/panelas.jpg",
+    "valor": 350.00,
+    "linkPagamento": "https://pagamento.mercadopago.com/presentes/panelas",
+    "reservado": false
+  },
+  {
+    "id": 2,
+    "nome": "Liquidificador",
+    "imagem": "img/presentes/liquidificador.jpg",
+    "valor": 180.00,
+    "linkPagamento": "https://pagamento.mercadopago.com/presentes/liquidificador",
+    "reservado": false
+  },
+  {
+    "id": 3,
+    "nome": "Micro-ondas",
+    "imagem": "img/presentes/microondas.jpg",
+    "valor": 600.00,
+    "linkPagamento": "https://pagamento.mercadopago.com/presentes/microondas",
+    "reservado": false
+  },
+  {
+    "id": 4,
+    "nome": "Ferro de Passar",
+    "imagem": "img/presentes/ferro.jpg",
+    "valor": 150.00,
+    "linkPagamento": "https://pagamento.mercadopago.com/presentes/ferro",
+    "reservado": false
+  },
+  {
+    "id": 5,
+    "nome": "Jogo de Cama",
+    "imagem": "img/presentes/jogo_de_cama.jpg",
+    "valor": 250.00,
+    "linkPagamento": "https://pagamento.mercadopago.com/presentes/jogo_de_cama",
+    "reservado": false
+  },
+  {
+    "id": 6,
+    "nome": "Cafeteira Elétrica",
+    "imagem": "img/presentes/cafeteira.jpg",
+    "valor": 300.00,
+    "linkPagamento": "https://pagamento.mercadopago.com/presentes/cafeteira",
+    "reservado": false
+  },
+  {
+    "id": 7,
+    "nome": "Jogo de Copos",
+    "imagem": "img/presentes/jogo_de_copos.jpg",
+    "valor": 90.00,
+    "linkPagamento": "https://pagamento.mercadopago.com/presentes/jogo_de_copos",
+    "reservado": false
+  },
+  {
+    "id": 8,
+    "nome": "Escorredor de Louça",
+    "imagem": "img/presentes/escorredor.jpg",
+    "valor": 120.00,
+    "linkPagamento": "https://pagamento.mercadopago.com/presentes/escorredor",
+    "reservado": false
+  },
+  {
+    "id": 9,
+    "nome": "Jogo de Facas",
+    "imagem": "img/presentes/jogo_de_facas.jpg",
+    "valor": 200.00,
+    "linkPagamento": "https://pagamento.mercadopago.com/presentes/jogo_de_facas",
+    "reservado": false
+  },
+  {
+    "id": 10,
+    "nome": "Máquina de Lavar Roupas",
+    "imagem": "img/presentes/maquina_lavar.jpg",
+    "valor": 2000.00,
+    "linkPagamento": "https://pagamento.mercadopago.com/presentes/maquina_lavar",
+    "reservado": false
+  },
+  {
+    "id": 11,
+    "nome": "Airfryer",
+    "imagem": "img/presentes/airfryer.jpg",
+    "valor": 500.00,
+    "linkPagamento": "https://pagamento.mercadopago.com/presentes/airfryer",
+    "reservado": false
+  },
+  {
+    "id": 12,
+    "nome": "Geladeira",
+    "imagem": "img/presentes/geladeira.jpg",
+    "valor": 3000.00,
+    "linkPagamento": "https://pagamento.mercadopago.com/presentes/geladeira",
+    "reservado": false
+  },
+  {
+    "id": 13,
+    "nome": "Fogão",
+    "imagem": "img/presentes/fogao.jpg",
+    "valor": 1200.00,
+    "linkPagamento": "https://pagamento.mercadopago.com/presentes/fogao",
+    "reservado": false
+  },
+  {
+    "id": 14,
+    "nome": "Televisão",
+    "imagem": "img/presentes/tv.jpg",
+    "valor": 2500.00,
+    "linkPagamento": "https://pagamento.mercadopago.com/presentes/tv",
+    "reservado": false
+  },
+  {
+    "id": 15,
+    "nome": "Cama",
+    "imagem": "img/presentes/cama.jpg",
+    "valor": 1800.00,
+    "linkPagamento": "https://pagamento.mercadopago.com/presentes/cama",
+    "reservado": false
+  },
+  {
+    "id": 16,
+    "nome": "Sofá",
+    "imagem": "img/presentes/sofa.jpg",
+    "valor": 2200.00,
+    "linkPagamento": "https://pagamento.mercadopago.com/presentes/sofa",
+    "reservado": false
+  }
+]

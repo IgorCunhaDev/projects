@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+@media screen and (min-width: 768px) {
+    #mobile {
+        display: none;
+    }
+
+    #toggleMenu {
+        display: none;
+    }
+
+    #menu  {
+        background-color: rgba(73, 114, 191, 0.5);;
+        display: flex;
+        text-align: center;
+        padding: 10px;
+        flex-wrap: nowrap;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    #menu > a {
+        padding-left: 20px;
+        font-size: 20px;
+        text-decoration: none;
+        color: #D0DBED;
+    }
+
+    #menu > a:hover {
+        text-decoration: underline;
+    }
+
+}
+
+@media screen and (min-width: 1024px) {
+    #menu > a {
+        font-size: 24px;
+    }
+
+    .card img {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #home {
+        width: 90vw;
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+    .time {
+        width: 80vw;
+        height: auto;
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 798px) {
+    .container {
+      padding: 20px 10px;
+    }
+  
+    #mapa iframe {
+      width: 95%;
+      height: 250px;
+    }
+  
+    .time {
+      width: 80px;
+      height: 80px;
+    }
+  
+   .time .texto {
+    font-size: 15px;
+   }
+
+    .cards-container, .cards-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card p {
+        font-size: 1.1em;
+    }
+  }
+
+  
+
