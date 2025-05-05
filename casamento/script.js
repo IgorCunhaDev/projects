@@ -72,7 +72,7 @@ menuLinks.forEach(link => {
 
 
   // Contagem regressiva
-const targetDate = new Date('2025-10-23T00:00:00');
+const targetDate = new Date('2025-08-24T00:00:00');
 
   function updateCountdown() {
       const now = new Date();
