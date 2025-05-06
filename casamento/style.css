@@ -278,6 +278,19 @@ html, body {
   background-color: var(--cor-destaque);
 }
 
+.filtro-container {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.filtro-container select {
+  padding: 8px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
 /* Overlay do modal (fundo escurecido) */
 .modal-overlay {
     position: fixed;
@@ -407,7 +420,38 @@ html, body {
     background-color: #218838;
 }
 
-  
+/* Container para os botões */
+#botao-container {
+  display: flex;
+  justify-content: center; /* Alinha horizontalmente ao centro */
+  align-items: center;     /* Alinha verticalmente ao centro */
+  height: 100vh;           /* Faz com que o container ocupe toda a altura da tela */
+  flex-direction: column;  /* Alinha os botões verticalmente */
+  gap: 20px;               /* Espaçamento entre os botões */
+}
+
+.btnVer{
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  padding-bottom: 15px;
+}
+
+#verMaisBtn, #verMenosBtn {
+  display: inline-block;
+    background-color: var(--cor-primaria);
+    color: var(--branco);
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+
+
 
 #presente {
   background-color: #b0cddf;

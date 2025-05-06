@@ -118,10 +118,25 @@
         </div>
     </div>
 
-        <section id="presente">
-            <h1 class="titulos">Lista de Presentes</h1>
-            <div class="cards-container" id="lista-presentes"></div>
-        </section>
+    <section id="presente">
+        <h1 class="titulos">Lista de Presentes</h1>
+        <div class="filtro-container">
+            <label for="filtro-categoria">Filtrar por categoria:</label>
+            <select id="filtro-categoria">
+                <option value="todos">Todos</option>
+                <option value="cozinha">Cozinha</option>
+                <option value="eletro">Eletrodomésticos</option>
+                <option value="moveis">Moveis</option>
+                <!-- Adicione mais categorias conforme seu JSON -->
+            </select>
+        </div>
+        <div class="cards-container" id="lista-presentes"></div>
+        <div class="btnVer">
+            <button id="verMaisBtn">Ver mais</button>
+            <button id="verMenosBtn" onclick="mostrarMenos()" style="display: none;">Ver Menos</button>
+        </div>
+    </section>
+    
 
     <section id="comentarios" >
         <h2 class="titulos">Deixe seu comentário</h2>
