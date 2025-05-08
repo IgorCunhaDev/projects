@@ -244,26 +244,6 @@ document.getElementById('filtro-categoria').addEventListener('change', function 
 document.getElementById('verMaisBtn').addEventListener('click', mostrarMais);
 document.getElementById('verMenosBtn').addEventListener('click', mostrarMenos);
 
-// Carregar e Exibir Padrinhos
-fetch('padrinhos.json')
-  .then(response => response.json())
-  .then(padrinhos => {
-    const container = document.getElementById("cards-padrinhos");
-    padrinhos.forEach(padrinho => {
-      const card = document.createElement("div");
-      card.classList.add("card");
-
-      card.innerHTML = `
-        <img src="${padrinho.foto}" alt="${padrinho.nome}">
-        <h2>${padrinho.nome}</h2>
-      `;
-
-      container.appendChild(card);
-    });
-  })
-  .catch(error => {
-    console.error("Erro ao carregar padrinhos:", error);
-  });
 
 // Comentários em Tempo Real
 const form = document.getElementById('form-comentario');

@@ -44,6 +44,10 @@
     .card img {
         width: 70%;
     }
+
+    .card-padrinhos img {
+        width: 70%;
+    }
 }
 
 @media screen and (max-width: 1024px) {
@@ -86,6 +90,14 @@
 
     .card p {
         font-size: 1.1em;
+    }
+
+    .card-padrinhos > p {
+        font-size: 1.1em;
+    }
+
+    .padrinhos-container {
+    grid-template-columns: repeat(2, 1fr);
     }
   }
 
