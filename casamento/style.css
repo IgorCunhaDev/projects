@@ -253,6 +253,21 @@ html, body {
   padding-top: 40px;
 }
 
+.img-local {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+}
+
+.img-local > img {
+  height: 400px;
+  width: 400px;
+  object-fit: cover;
+  margin: 40px;
+  border-radius: 10px;
+}
+
 .rotas {
   margin-top: 30px;
   display: flex;
@@ -420,24 +435,16 @@ html, body {
     background-color: #218838;
 }
 
-/* Container para os botões */
-#botao-container {
-  display: flex;
-  justify-content: center; /* Alinha horizontalmente ao centro */
-  align-items: center;     /* Alinha verticalmente ao centro */
-  height: 100vh;           /* Faz com que o container ocupe toda a altura da tela */
-  flex-direction: column;  /* Alinha os botões verticalmente */
-  gap: 20px;               /* Espaçamento entre os botões */
-}
 
 .btnVer{
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
   padding-bottom: 15px;
+  padding-top: 15px;
 }
 
-#verMaisBtn, #verMenosBtn {
+#verMaisBtn, #verMenosBtn, #ver-mais, #ver-menos {
   display: inline-block;
     background-color: var(--cor-primaria);
     color: var(--branco);
@@ -449,9 +456,6 @@ html, body {
     transition: background-color 0.3s ease;
     text-align: center;
 }
-
-
-
 
 #presente {
   background-color: #b0cddf;
@@ -603,6 +607,18 @@ html, body {
   background-color: #6245db;
 }
 
+#mensagem-status {
+  background-color: #dff0d8; /* verde claro suave */
+  color: #3c763d; /* verde escuro para contraste */
+  padding: 10px 20px;
+  margin-top: 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
 #lista-comentarios {
   margin-top: 30px;
   display: flex;
@@ -620,8 +636,9 @@ html, body {
 #lista-comentarios strong {
   display: block;
   margin-bottom: 5px;
-  color: #333;
+  font-size: 20px;
 }
+
 
 .final {
   display: flex;

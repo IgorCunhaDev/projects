@@ -83,6 +83,12 @@
             referrerpolicy="no-referrer-when-downgrade">
         </iframe>
         
+        <div class="img-local">
+            <img src="img/costa1.jpg" alt="">
+            <img src="img/costa2.jpg" alt="">
+            <img src="img/costa3.jpg" alt="">
+        </div>
+
         <div class="rotas">
             <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Artur+Fernandes+de+Oliveira,+210,+Cabo+de+Santo+Agostinho+-+PE" target="_blank">
                 <button class="botao-mapa">Abrir no Google Maps</button>
@@ -92,31 +98,31 @@
                 <button class="botao-mapa">Abrir no Waze</button>
             </a>
         </div>
-        </section>
+    </section>
         
 
         
-        <div class="padrinhos">
-            <h2 class="titulos">Nossos Padrinhos</h2>
-            <div class="padrinhos-container">
-                <div class="card-padrinhos">
-                    <img src="img/padrinhos/itala.jpg" alt="">
-                    <p>Ítala Cunha</p>
-                </div>
-                <div class="card-padrinhos">
-                    <img src="img/padrinhos/lucas.jpg" alt="">
-                    <p>Lucas Chicão</p>
-                </div>
-                <div class="card-padrinhos">
-                    <img src="img/padrinhos/itala.jpg" alt="">
-                    <p>Ítala Cunha</p>
-                </div>
-                <div class="card-padrinhos">
-                    <img src="img/padrinhos/lucas.jpg" alt="">
-                    <p>Lucas Chicão</p>
-                </div>
+    <div class="padrinhos">
+        <h2 class="titulos">Nossos Padrinhos</h2>
+        <div class="padrinhos-container">
+            <div class="card-padrinhos">
+                <img src="img/padrinhos/itala.jpg" alt="">
+                <p>Ítala Cunha</p>
+            </div>
+            <div class="card-padrinhos">
+                <img src="img/padrinhos/lucas.jpg" alt="">
+                <p>Lucas Chicão</p>
+            </div>
+            <div class="card-padrinhos">
+                <img src="img/padrinhos/itala.jpg" alt="">
+                <p>Ítala Cunha</p>
+            </div>
+            <div class="card-padrinhos">
+                <img src="img/padrinhos/lucas.jpg" alt="">
+                <p>Lucas Chicão</p>
             </div>
         </div>
+    </div>
 
 
     <div id="modal-presente" class="modal-overlay">
@@ -162,8 +168,14 @@
             <textarea id="mensagem" placeholder="Escreva algo bonito..." required></textarea>
             <button type="submit">Enviar</button>
         </form>
+        <p id="mensagem-status" style="display:none;"></p>
         <div id="lista-comentarios"></div>
-        </section>
+        <div class="btnVer">
+            <button id="ver-mais">Ver mais comentários</button>
+            <button id="ver-menos">Ver menos comentários</button>
+        </div>
+        </div>
+    </section>
           
         <section class="final">
             <p>Nos vemos em Breve</p>

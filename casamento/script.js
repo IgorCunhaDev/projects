@@ -248,11 +248,19 @@ document.getElementById('verMenosBtn').addEventListener('click', mostrarMenos);
 // Comentários em Tempo Real
 const form = document.getElementById('form-comentario');
 const lista = document.getElementById('lista-comentarios');
+const btnVerMais = document.getElementById('ver-mais');
+const btnVerMenos = document.getElementById('ver-menos');
 
+let todosComentarios = [];
+let comentariosVisiveis = 5; // Começamos com 5 comentários visíveis
+const comentariosPorClique = 5; // Carregar 5 comentários por vez
+
+// Submissão de comentário
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const nome = document.getElementById('nome').value.trim();
   const mensagem = document.getElementById('mensagem').value.trim();
+  const statusMsg = document.getElementById('mensagem-status');
 
   if (nome && mensagem) {
     try {
@@ -261,20 +269,76 @@ form.addEventListener('submit', async (e) => {
         mensagem,
         timestamp: serverTimestamp()
       });
+
       form.reset();
+      form.style.display = 'none'; // Esconde o formulário
+      statusMsg.textContent = 'Comentário enviado com sucesso!';
+      statusMsg.style.display = 'flex';
     } catch (error) {
       console.error('Erro ao enviar comentário:', error);
+      statusMsg.textContent = 'Erro ao enviar comentário. Tente novamente.';
+      statusMsg.style.display = 'block';
+      statusMsg.style.color = 'red';
     }
   }
 });
 
+
+
+// Atualiza comentários em tempo real
 const q = query(collection(db, 'comentarios'), orderBy('timestamp', 'desc'));
 onSnapshot(q, (snapshot) => {
-  lista.innerHTML = '';
-  snapshot.forEach(doc => {
-    const data = doc.data();
+  todosComentarios = snapshot.docs.map(doc => doc.data());
+  renderizarComentarios();
+});
+
+// Renderiza os comentários
+// Função para renderizar os comentários
+function renderizarComentarios() {
+  lista.innerHTML = '';  // Limpa a lista de comentários exibidos
+
+  // Exibe os comentários com base na quantidade visível
+  const visiveisComentarios = todosComentarios.slice(0, comentariosVisiveis);
+
+  visiveisComentarios.forEach(data => {
     const div = document.createElement('div');
-    div.innerHTML = `<strong>${data.nome}</strong><p>${data.mensagem}</p>`;
+    div.classList.add('comentario');
+    
+    const nomeEl = document.createElement('strong');
+    nomeEl.textContent = data.nome;
+
+    const msgEl = document.createElement('p');
+    msgEl.classList.add('mensagem');
+    msgEl.textContent = data.mensagem;
+
+    div.appendChild(nomeEl);
+    div.appendChild(msgEl);
     lista.appendChild(div);
   });
+
+  // Lógica para exibição dos botões
+  if (todosComentarios.length > 6) {
+  // Mostra o botão "Ver mais" se ainda há comentários ocultos
+  btnVerMais.style.display = comentariosVisiveis < todosComentarios.length ? 'inline-block' : 'none';
+
+  // Mostra o botão "Ver menos" apenas se há mais que 6 comentários visíveis
+  btnVerMenos.style.display = comentariosVisiveis > 6 ? 'inline-block' : 'none';
+} else {
+  // Se há 6 ou menos comentários, esconde ambos os botões
+  btnVerMais.style.display = 'none';
+  btnVerMenos.style.display = 'none';
+}
+}
+
+
+// Evento do botão "Ver mais"
+btnVerMais.addEventListener('click', () => {
+  comentariosVisiveis += comentariosPorClique; // Aumenta 5 comentários
+  renderizarComentarios();
+});
+
+// Evento do botão "Ver menos"
+btnVerMenos.addEventListener('click', () => {
+  comentariosVisiveis -= comentariosPorClique; // Diminui 5 comentários
+  renderizarComentarios();
 });

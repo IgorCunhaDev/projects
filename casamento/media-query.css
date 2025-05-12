@@ -74,6 +74,16 @@
       width: 95%;
       height: 250px;
     }
+
+    .img-local {
+        height: 250px;
+    }
+
+    .img-local > img {
+        height: 150px;
+        width: 150px;
+        margin: 10px;
+    }
   
     .time {
       width: 80px;
