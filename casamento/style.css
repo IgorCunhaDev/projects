@@ -589,7 +589,7 @@ html, body {
 
 /* Comentários */
 #comentarios, #confirmacao {
-  max-width: 80%;
+  max-width: 600px;
   margin: 40px auto;
   padding: 20px;
   border-radius: 12px;
