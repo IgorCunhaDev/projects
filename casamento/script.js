@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Contagem Regressiva
-const targetDate = new Date('2025-10-23T00:00:00');
+const targetDate = new Date('2025-08-23T00:00:00');
 function updateCountdown() {
   const now = new Date();
   const difference = targetDate - now;
@@ -342,3 +342,152 @@ btnVerMenos.addEventListener('click', () => {
   comentariosVisiveis -= comentariosPorClique; // Diminui 5 comentários
   renderizarComentarios();
 });
+
+
+
+// Evento do botão "Ver mais"
+btnVerMais.addEventListener('click', () => {
+  comentariosVisiveis += comentariosPorClique; // Aumenta 5 comentários
+  renderizarComentarios();
+});
+
+// Evento do botão "Ver menos"
+btnVerMenos.addEventListener('click', () => {
+  comentariosVisiveis -= comentariosPorClique; // Diminui 5 comentários
+  renderizarComentarios();
+});
+
+
+
+
+
+
+
+    // === CONFIRMAÇÃO DE PRESENÇA ===
+
+// Elementos principais
+const formConfirmacao = document.getElementById("form-confirmacao");
+const camposAdicionais = document.getElementById("campos-adicionais");
+const adultosSelect = document.getElementById("adultos");
+const criancasSelect = document.getElementById("criancas");
+const acompanhantesAdultosDiv = document.getElementById("acompanhantes-adultos");
+const acompanhantesCriancasDiv = document.getElementById("acompanhantes-criancas");
+const radios = document.querySelectorAll('input[name="presenca"]');
+
+// === 1. Exibir/Ocultar campos adicionais conforme a escolha ===
+radios.forEach(radio => {
+  radio.addEventListener("change", () => {
+    if (radio.value === "Sim") {
+      camposAdicionais.style.display = "block";
+    } else {
+      camposAdicionais.style.display = "none";
+      acompanhantesAdultosDiv.innerHTML = "";
+      acompanhantesCriancasDiv.innerHTML = "";
+    }
+  });
+});
+
+// === 2. Gerar dinamicamente inputs para acompanhantes adultos ===
+adultosSelect.addEventListener("change", () => {
+  acompanhantesAdultosDiv.innerHTML = "";
+  const qtd = parseInt(adultosSelect.value);
+  for (let i = 2; i <= qtd; i++) {
+    const label = document.createElement("label");
+    label.textContent = `Acompanhante ${i} - Nome completo`;
+    const input = document.createElement("input");
+    input.type = "text";
+    input.placeholder = `Nome do acompanhante ${i}`;
+    input.classList.add("adulto-input");
+    input.required = true;
+
+    acompanhantesAdultosDiv.appendChild(label);
+    acompanhantesAdultosDiv.appendChild(input);
+  }
+});
+
+// === 3. Gerar dinamicamente inputs para acompanhantes crianças ===
+criancasSelect.addEventListener("change", () => {
+  acompanhantesCriancasDiv.innerHTML = "";
+  const qtd = parseInt(criancasSelect.value);
+  for (let i = 1; i <= qtd; i++) {
+    const label = document.createElement("label");
+    label.textContent = `Criança ${i} - Nome completo`;
+    const input = document.createElement("input");
+    input.type = "text";
+    input.placeholder = `Nome da criança ${i}`;
+    input.classList.add("crianca-input");
+    input.required = true;
+
+    acompanhantesCriancasDiv.appendChild(label);
+    acompanhantesCriancasDiv.appendChild(input);
+  }
+});
+
+// === 4. Envio dos dados para o Firestore ===
+formConfirmacao.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // Captura dos dados principais
+  const nome = document.getElementById("nome-confirmacao").value.trim();
+  const sobrenome = document.getElementById("sobrenome").value.trim();
+  const presenca = document.querySelector('input[name="presenca"]:checked').value;
+  const telefone = document.getElementById("telefone").value.trim();
+  const observacoes = document.getElementById("observacoes").value.trim();
+  const qtdAdultos = parseInt(adultosSelect.value);
+  const qtdCriancas = parseInt(criancasSelect.value);
+
+  // Captura acompanhantes adultos
+  const nomesAdultos = Array.from(document.querySelectorAll(".adulto-input"))
+    .map(input => input.value.trim()).filter(v => v !== "");
+
+  // Captura acompanhantes crianças
+  const nomesCriancas = Array.from(document.querySelectorAll(".crianca-input"))
+    .map(input => input.value.trim()).filter(v => v !== "");
+
+  console.log("Nomes Adultos:", nomesAdultos); // Verifique se os dados dos acompanhantes adultos estão sendo capturados corretamente
+  console.log("Nomes Crianças:", nomesCriancas); // Verifique se os dados das crianças estão sendo capturados corretamente
+
+  try {
+    // Envio para o Firestore
+    await addDoc(collection(db, "confirmacoes"), {
+      nomeCompleto: `${nome} ${sobrenome}`,
+      presenca,
+      quantidadeAdultos: qtdAdultos,
+      nomesAdultos,
+      quantidadeCriancas: qtdCriancas,
+      nomesCriancas,
+      telefone,
+      observacoes,
+      timestamp: serverTimestamp()
+    });
+
+    // Esconde o formulário
+    formConfirmacao.style.display = "none";
+    camposAdicionais.style.display = "none"; // Esconde os campos adicionais
+
+    // Exibe a mensagem de confirmação
+    const mensagem = document.getElementById("mensagem-confirmacao");
+    mensagem.textContent = "Confirmação enviada com sucesso!";
+    mensagem.style.display = "flex";  // Torna a mensagem visível
+
+  } catch (err) {
+    console.error("Erro ao enviar confirmação:", err);
+    alert("Ocorreu um erro ao enviar. Tente novamente.");
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -34,17 +34,18 @@
         text-decoration: underline;
     }
 
+    
 }
 
 @media screen and (min-width: 1024px) {
     #menu > a {
         font-size: 24px;
     }
-
+    
     .card img {
         width: 70%;
     }
-
+    
     .card-padrinhos img {
         width: 70%;
     }
@@ -54,7 +55,12 @@
     #home {
         width: 90vw;
     }
-
+    
+    .img-local > img {
+        height: 250px;
+        width: 250px;
+        margin: 5px;
+    }
 }
 
 @media screen and (max-width: 500px) {
@@ -70,19 +76,19 @@
       padding: 20px 10px;
     }
   
-    #mapa iframe {
+    .mapa-wrapper {
       width: 95%;
       height: 250px;
     }
 
     .img-local {
-        height: 250px;
+        height: 200px;
     }
 
     .img-local > img {
-        height: 150px;
-        width: 150px;
-        margin: 10px;
+        height: 120px;
+        width: 120px;
+        margin: 5px;
     }
   
     .time {
@@ -109,6 +115,30 @@
     .padrinhos-container {
     grid-template-columns: repeat(2, 1fr);
     }
+
+    #confirmacao {
+    padding: 20px;
+  }
+
+  #form-confirmacao {
+    gap: 15px;
+  }
+
+  #form-confirmacao input,
+  #form-confirmacao select,
+  #form-confirmacao textarea {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  #form-confirmacao button {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .radio-box-group {
+    gap: 10px;
+  }
   }
 
   

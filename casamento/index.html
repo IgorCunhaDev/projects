@@ -76,29 +76,28 @@
     
     <section id="mapa">
         <h1 class="titulos">Localização</h1>
-        
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d829.995700930554!2d-35.01949830026112!3d-8.288148531221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7aaeff481466653%3A0xc99676d032cf5dc0!2sR.%20Artur%20Fernandes%20de%20Oliveira%2C%20210%20-%20Garapu%2C%20Cabo%20de%20Santo%20Agostinho%20-%20PE%2C%2054519-040!5e0!3m2!1spt-BR!2sbr!4v1744224765432!5m2!1spt-BR!2sbr"
-            loading="lazy"
-            allowfullscreen
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-        
+
+        <div class="mapa-wrapper">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3947.9392445418684!2d-35.08808508853941!3d-8.308836791692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7aaf1168e42ccb3%3A0xc1c9b28b7802c676!2sCOSTA%20VERDE%20EVENTOS!5e0!3m2!1spt-BR!2sbr!4v1747161439519!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+            <div class="rotas-overlay">
+                <a href="https://maps.app.goo.gl/fDDAGV3F9xS8Xru89" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2991/2991231.png" alt="Google Maps" class="icon-botao">
+                </a>
+                <a href="https://ul.waze.com/ul?ll=-8.30886371%2C-35.08554697&navigate=yes&zoom=17&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank">
+                    <img src="img/waze.png" alt="Waze" class="icon-botao">
+                </a>
+            </div>
+        </div>
+
+
         <div class="img-local">
             <img src="img/costa1.jpg" alt="">
             <img src="img/costa2.jpg" alt="">
             <img src="img/costa3.jpg" alt="">
         </div>
-
-        <div class="rotas">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Artur+Fernandes+de+Oliveira,+210,+Cabo+de+Santo+Agostinho+-+PE" target="_blank">
-                <button class="botao-mapa">Abrir no Google Maps</button>
-            </a>
-        
-            <a href="https://waze.com/ul?ll=-8.288148531221,-35.01949830026112&navigate=yes" target="_blank">
-                <button class="botao-mapa">Abrir no Waze</button>
-            </a>
-        </div>
     </section>
+
         
 
         
@@ -160,27 +159,91 @@
         </div>
     </section>
     
+    <section id="confirmacao">
+        <h2 class="titulos">Confirmação de Presença</h2>
+        <p id="mensagem-confirmacao" style="display: none;"></p>
+        <form id="form-confirmacao">
+
+            <label for="nome">Nome</label>
+            <input type="text" id="nome-confirmacao" name="nome" placeholder="Insira seu nome" required>
+
+            <label for="sobrenome">Sobrenome</label>
+            <input type="text" id="sobrenome" name="sobrenome" placeholder="Insira seu sobrenome" required>
+
+            <!-- Pergunta de presença -->
+            <div class="box">
+                <label>Você irá ao evento?</label>
+                <div class="radio-box-group">
+                    <label class="radio-box">
+                        <input type="radio" name="presenca" value="Sim" required>
+                        <span class="checkmark"></span> Sim
+                    </label>
+                    <label class="radio-box">
+                        <input type="radio" name="presenca" value="Não">
+                        <span class="checkmark"></span> Não
+                    </label>
+                </div>
+            </div>
+            
+            <!-- AQUI ENTRA o bloco oculto -->
+            <div id="campos-adicionais" style="display: none;">
+                <label for="adultos">Quantidade de adultos incluindo você</label>
+                <select id="adultos" name="adultos">
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+
+                <div id="acompanhantes-adultos"></div> <!-- Campos dinâmicos aqui -->
+
+                <label for="criancas">Quantidade de crianças</label>
+                <select id="criancas" name="criancas">
+                    <option value="0" selected>0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+
+                <div id="acompanhantes-criancas"></div> <!-- Campos dinâmicos para as crianças -->
+
+                <label for="telefone">Telefone para contato</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="(81) 99999-9999">
+
+                <label for="observacoes">Observações</label>
+                <textarea id="observacoes" name="observacoes" rows="3"></textarea>
+            </div>
+
+            <div class="btn">
+                <button type="submit">Confirmar Presença</button>
+            </div>
+        </form>
+
+    </section>
 
     <section id="comentarios" >
-        <h2 class="titulos">Deixe seu comentário</h2>
+        <h2 class="titulos">Deixe seu recado</h2>
         <form id="form-comentario">
             <input type="text" id="nome" placeholder="Seu nome" required />
-            <textarea id="mensagem" placeholder="Escreva algo bonito..." required></textarea>
+            <textarea id="mensagem" placeholder="Escreva seu recado para os noivos." required></textarea>
             <button type="submit">Enviar</button>
         </form>
         <p id="mensagem-status" style="display:none;"></p>
         <div id="lista-comentarios"></div>
         <div class="btnVer">
-            <button id="ver-mais">Ver mais comentários</button>
-            <button id="ver-menos">Ver menos comentários</button>
+            <button id="ver-mais">Ver mais</button>
+            <button id="ver-menos">Ver menos</button>
         </div>
         </div>
     </section>
-          
-        <section class="final">
-            <p>Nos vemos em Breve</p>
-            <h1>Gabbatha & Igor - 2025</h1>
-        </section>
+
+
+
+
+      
+    <section class="final">
+        <p>Nos vemos em Breve</p>
+        <h1>Gabbatha & Igor - 2025</h1>
+    </section>
     </main>
     
     <footer>
