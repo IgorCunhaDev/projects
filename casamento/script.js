@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp, updateDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -14,20 +14,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Função para salvar a reserva
-export async function salvarReserva(nome, email, presente) {
-  try {
-    await addDoc(collection(db, "reservas"), {
-      nome,
-      email,
-      presente,
-      data: new Date()
-    });
-    console.log("Reserva salva!");
-  } catch (e) {
-    console.error("Erro ao salvar reserva: ", e);
-  }
-}
+
 
 // Menu Responsivo
 document.addEventListener('DOMContentLoaded', function () {
@@ -65,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Contagem Regressiva
-const targetDate = new Date('2025-08-23T00:00:00');
+const targetDate = new Date('2025-08-24T00:00:00');
 function updateCountdown() {
   const now = new Date();
   const difference = targetDate - now;
@@ -101,7 +88,6 @@ window.reservarPresente = function(nomeDoPresente) {
   abrirModal(); // abre o modal
 };
 
-
 function fecharModal() {
   const modal = document.getElementById('modal-presente');
   modal.classList.remove('active');
@@ -123,6 +109,44 @@ function validarEmail(email) {
   return regex.test(email);
 }
 
+// Função para atualizar o campo 'reservado' do presente no Firestore
+async function marcarPresenteComoReservado(nomeDoPresente) {
+  console.log("Tentando marcar presente como reservado:", nomeDoPresente);
+  
+  const presente = todosPresentes.find(p => p.nome === nomeDoPresente);
+  if (!presente) {
+    console.error("Presente não encontrado.");
+    return;
+  }
+
+  console.log("Presente encontrado:", presente);
+
+  try {
+    const presenteRef = doc(db, 'presentes', presente.firestoreId); // agora usa o ID real
+    await updateDoc(presenteRef, { reservado: true });
+    console.log("Presente marcado como reservado com sucesso!");
+  } catch (error) {
+    console.error("Erro ao marcar presente como reservado:", error);
+  }
+}
+
+
+// Função para salvar a reserva
+export async function salvarReserva(nome, email, presente) {
+  try {
+    await addDoc(collection(db, "reservas"), {
+      nome,
+      email,
+      presente,
+      data: new Date()
+    });
+    console.log("Reserva salva!");
+  } catch (e) {
+    console.error("Erro ao salvar reserva: ", e);
+  }
+}
+
+
 document.getElementById('confirmar-presente').addEventListener('click', async function () {
   const nome = document.getElementById('nome-presenteador').value.trim();
   const email = document.getElementById('email-presenteador').value.trim();
@@ -130,29 +154,52 @@ document.getElementById('confirmar-presente').addEventListener('click', async fu
 
   if (nome === "" || email === "") {
     alert("Por favor, preencha todos os campos.");
-  } else if (!validarEmail(email)) {
+    return;
+  }
+  if (!validarEmail(email)) {
     alert("Por favor, insira um e-mail válido.");
-  } else if (!presente) {
+    return;
+  }
+  if (!presente) {
     alert("Erro ao identificar o presente selecionado.");
-  } else {
-    try {
-      await salvarReserva(nome, email, presente);
-      const mensagemSucesso = document.getElementById('mensagem-sucesso');
-      mensagemSucesso.style.display = 'block';
-      mensagemSucesso.innerHTML = 'O presente foi reservado com sucesso!';
+    return;
+  }
 
-      document.getElementById('btn-pagar').style.display = 'block';
-    } catch (e) {
-      alert("Erro ao salvar reserva. Tente novamente.");
-    }
+  try {
+    // Primeiro salva a reserva (sua função existente)
+    await salvarReserva(nome, email, presente);
+
+    // Depois marca o presente como reservado no Firestore
+    await marcarPresenteComoReservado(presente);
+
+    // Atualiza o array local para refletir o status reservado
+    todosPresentes = todosPresentes.map(item => {
+      if (item.nome === presente) {
+        return { ...item, reservado: true };
+      }
+      return item;
+    });
+
+    // Renderiza novamente a lista para ocultar o presente reservado
+    renderizarPresentes(todosPresentes);
+
+    // Mensagem de sucesso e botão de pagamento
+    const mensagemSucesso = document.getElementById('mensagem-sucesso');
+    mensagemSucesso.style.display = 'block';
+    mensagemSucesso.innerHTML = 'O presente foi reservado com sucesso!';
+
+    document.getElementById('btn-pagar').style.display = 'block';
+
+  } catch (e) {
+    alert("Erro ao salvar reserva. Tente novamente.");
   }
 });
+
 
 // Redirecionar para Mercado Pago
 function continuarPagamento() {
   window.location.href = "https://mpago.la/2kd9gDg";
 }
-
 window.continuarPagamento = continuarPagamento;
 
 let todosPresentes = [];
@@ -164,13 +211,13 @@ function renderizarPresentes(lista) {
   const verMaisBtn = document.getElementById('verMaisBtn');
   const verMenosBtn = document.getElementById('verMenosBtn');
 
-  // Limpa o conteúdo do container
+  // Mostrar só presentes que NÃO estão reservados
+  const presentesDisponiveis = lista.filter(presente => !presente.reservado);
+
   container.innerHTML = '';
 
-  // Exibe apenas os itens visíveis
-  const itensParaExibir = lista.slice(0, itensVisiveis);
+  const itensParaExibir = presentesDisponiveis.slice(0, itensVisiveis);
 
-  // Criar os cards para os itens visíveis
   itensParaExibir.forEach(presente => {
     const card = document.createElement('div');
     card.classList.add('card');
@@ -184,48 +231,56 @@ function renderizarPresentes(lista) {
       <img src="${presente.imagem}" alt="${presente.nome}">
       <p>${presente.nome}</p>
       <p class="preco">${valorFormatado}</p>
-      <button onclick="reservarPresente('${presente.nome}')" ${presente.reservado ? 'disabled' : ''}>
-        ${presente.reservado ? 'Reservado' : 'Presentear'}
+      <button onclick="reservarPresente('${presente.nome}')">
+        Presentear
       </button>
     `;
 
     container.appendChild(card);
   });
 
-  // Mostrar/Esconder o botão "Ver Mais" ou "Ver Menos"
-  if (itensVisiveis >= lista.length) {
-    verMaisBtn.style.display = 'none';  // Esconde o botão "Ver Mais" quando todos os itens são exibidos
+  if (itensVisiveis >= presentesDisponiveis.length) {
+    verMaisBtn.style.display = 'none';
   } else {
-    verMaisBtn.style.display = 'block';  // Exibe o botão "Ver Mais"
+    verMaisBtn.style.display = 'block';
   }
 
   if (itensVisiveis > 6) {
-    verMenosBtn.style.display = 'block';  // Exibe o botão "Ver Menos"
+    verMenosBtn.style.display = 'block';
   } else {
-    verMenosBtn.style.display = 'none';  // Esconde o botão "Ver Menos"
+    verMenosBtn.style.display = 'none';
   }
 }
 
 // Carregar os dados dos presentes
-fetch('presentes.json')
-  .then(response => response.json())
-  .then(presentes => {
-    todosPresentes = presentes;
-    renderizarPresentes(todosPresentes);  // Renderiza a lista inicial de presentes
-  })
-  .catch(error => console.error('Erro ao carregar os presentes:', error));
+const presentesRef = collection(db, 'presentes'); // 'presentes' é o nome da sua coleção no Firestore
+const presentesQuery = query(presentesRef, orderBy('nome')); // opcional: ordena por nome
+
+// Atualiza em tempo real com onSnapshot
+onSnapshot(presentesQuery, (snapshot) => {
+ todosPresentes = snapshot.docs.map(docSnapshot => {
+  const data = docSnapshot.data();
+  return {
+    ...data,
+     firestoreId: docSnapshot.id  // garante que o ID real do Firestore seja mantido
+  };
+});
+
+  renderizarPresentes(todosPresentes);
+});
+
 
 // Função para mostrar mais itens
 function mostrarMais() {
-  itensVisiveis += 6;  // Aumenta a quantidade de itens visíveis
-  renderizarPresentes(todosPresentes);  // Re-renderiza a lista
+  itensVisiveis += 6;  
+  renderizarPresentes(todosPresentes);  
 }
 
 // Função para mostrar menos itens
 function mostrarMenos() {
   if (itensVisiveis > 6) {
-    itensVisiveis -= 6;  // Diminui a quantidade de itens visíveis
-    renderizarPresentes(todosPresentes);  // Re-renderiza a lista
+    itensVisiveis -= 6;  
+    renderizarPresentes(todosPresentes);  
   }
 }
 
@@ -233,10 +288,10 @@ function mostrarMenos() {
 document.getElementById('filtro-categoria').addEventListener('change', function () {
   const categoriaSelecionada = this.value;
   if (categoriaSelecionada === 'todos') {
-    renderizarPresentes(todosPresentes);  // Mostra todos os presentes
+    renderizarPresentes(todosPresentes);  
   } else {
     const filtrados = todosPresentes.filter(p => p.categoria === categoriaSelecionada);
-    renderizarPresentes(filtrados);  // Mostra apenas os presentes filtrados
+    renderizarPresentes(filtrados);  
   }
 });
 
@@ -252,8 +307,8 @@ const btnVerMais = document.getElementById('ver-mais');
 const btnVerMenos = document.getElementById('ver-menos');
 
 let todosComentarios = [];
-let comentariosVisiveis = 5; // Começamos com 5 comentários visíveis
-const comentariosPorClique = 5; // Carregar 5 comentários por vez
+let comentariosVisiveis = 5; 
+const comentariosPorClique = 5; 
 
 // Submissão de comentário
 form.addEventListener('submit', async (e) => {
@@ -271,7 +326,7 @@ form.addEventListener('submit', async (e) => {
       });
 
       form.reset();
-      form.style.display = 'none'; // Esconde o formulário
+      form.style.display = 'none'; 
       statusMsg.textContent = 'Comentário enviado com sucesso!';
       statusMsg.style.display = 'flex';
     } catch (error) {
@@ -293,9 +348,8 @@ onSnapshot(q, (snapshot) => {
 });
 
 // Renderiza os comentários
-// Função para renderizar os comentários
 function renderizarComentarios() {
-  lista.innerHTML = '';  // Limpa a lista de comentários exibidos
+  lista.innerHTML = ''; 
 
   // Exibe os comentários com base na quantidade visível
   const visiveisComentarios = todosComentarios.slice(0, comentariosVisiveis);
