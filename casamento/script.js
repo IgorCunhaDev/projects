@@ -100,7 +100,22 @@ function fecharModal() {
   document.getElementById('email-presenteador').value = '';
   document.getElementById('mensagem-sucesso').style.display = 'none';
   document.getElementById('btn-pagar').style.display = 'none';
+
+  document.getElementById('btn-continuar').style.display = 'inline-block';
+  document.getElementById('confirmar-presente').style.display = 'none';
+  document.getElementById('aviso-reserva').style.display = 'none';
 }
+
+document.getElementById('btn-continuar').addEventListener('click', () => {
+  // Mostrar aviso
+  document.getElementById('aviso-reserva').style.display = 'block';
+
+  // Mostrar botão Confirmar
+  document.getElementById('confirmar-presente').style.display = 'inline-block';
+
+  // Esconder botão Continuar
+  document.getElementById('btn-continuar').style.display = 'none';
+});
 
 window.fecharModal = fecharModal;
 
@@ -188,6 +203,9 @@ document.getElementById('confirmar-presente').addEventListener('click', async fu
     mensagemSucesso.style.display = 'block';
     mensagemSucesso.innerHTML = 'O presente foi reservado com sucesso!';
 
+    document.getElementById('aviso-reserva').style.display = 'none';
+    document.getElementById('confirmar-presente').style.display = 'none';
+
     document.getElementById('btn-pagar').style.display = 'block';
 
   } catch (e) {
@@ -198,9 +216,15 @@ document.getElementById('confirmar-presente').addEventListener('click', async fu
 
 // Redirecionar para Mercado Pago
 function continuarPagamento() {
-  window.location.href = "https://mpago.la/2kd9gDg";
+  window.open("https://mpago.la/2kd9gDg", "_blank");
+  fecharModal();
+  window.scrollTo(0, 0); // Opcional
 }
+
 window.continuarPagamento = continuarPagamento;
+
+
+
 
 let todosPresentes = [];
 let itensVisiveis = 6; // Inicialmente, 6 itens visíveis
@@ -302,13 +326,7 @@ document.getElementById('verMenosBtn').addEventListener('click', mostrarMenos);
 
 // Comentários em Tempo Real
 const form = document.getElementById('form-comentario');
-const lista = document.getElementById('lista-comentarios');
-const btnVerMais = document.getElementById('ver-mais');
-const btnVerMenos = document.getElementById('ver-menos');
 
-let todosComentarios = [];
-let comentariosVisiveis = 5; 
-const comentariosPorClique = 5; 
 
 // Submissão de comentário
 form.addEventListener('submit', async (e) => {
@@ -337,84 +355,6 @@ form.addEventListener('submit', async (e) => {
     }
   }
 });
-
-
-
-// Atualiza comentários em tempo real
-const q = query(collection(db, 'comentarios'), orderBy('timestamp', 'desc'));
-onSnapshot(q, (snapshot) => {
-  todosComentarios = snapshot.docs.map(doc => doc.data());
-  renderizarComentarios();
-});
-
-// Renderiza os comentários
-function renderizarComentarios() {
-  lista.innerHTML = ''; 
-
-  // Exibe os comentários com base na quantidade visível
-  const visiveisComentarios = todosComentarios.slice(0, comentariosVisiveis);
-
-  visiveisComentarios.forEach(data => {
-    const div = document.createElement('div');
-    div.classList.add('comentario');
-    
-    const nomeEl = document.createElement('strong');
-    nomeEl.textContent = data.nome;
-
-    const msgEl = document.createElement('p');
-    msgEl.classList.add('mensagem');
-    msgEl.textContent = data.mensagem;
-
-    div.appendChild(nomeEl);
-    div.appendChild(msgEl);
-    lista.appendChild(div);
-  });
-
-  // Lógica para exibição dos botões
-  if (todosComentarios.length > 6) {
-  // Mostra o botão "Ver mais" se ainda há comentários ocultos
-  btnVerMais.style.display = comentariosVisiveis < todosComentarios.length ? 'inline-block' : 'none';
-
-  // Mostra o botão "Ver menos" apenas se há mais que 6 comentários visíveis
-  btnVerMenos.style.display = comentariosVisiveis > 6 ? 'inline-block' : 'none';
-} else {
-  // Se há 6 ou menos comentários, esconde ambos os botões
-  btnVerMais.style.display = 'none';
-  btnVerMenos.style.display = 'none';
-}
-}
-
-
-// Evento do botão "Ver mais"
-btnVerMais.addEventListener('click', () => {
-  comentariosVisiveis += comentariosPorClique; // Aumenta 5 comentários
-  renderizarComentarios();
-});
-
-// Evento do botão "Ver menos"
-btnVerMenos.addEventListener('click', () => {
-  comentariosVisiveis -= comentariosPorClique; // Diminui 5 comentários
-  renderizarComentarios();
-});
-
-
-
-// Evento do botão "Ver mais"
-btnVerMais.addEventListener('click', () => {
-  comentariosVisiveis += comentariosPorClique; // Aumenta 5 comentários
-  renderizarComentarios();
-});
-
-// Evento do botão "Ver menos"
-btnVerMenos.addEventListener('click', () => {
-  comentariosVisiveis -= comentariosPorClique; // Diminui 5 comentários
-  renderizarComentarios();
-});
-
-
-
-
-
 
 
     // === CONFIRMAÇÃO DE PRESENÇA ===

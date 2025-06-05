@@ -21,19 +21,19 @@
                 <a href="#mapa">Local</a>
                 <a href="#padrinhos">Nossos Padrinhos</a>
                 <a href="#presente">Lista de presentes</a>
-                <a href="#">Confirme sua presença</a>
+                <a href="#confirmacao">Confirme sua presença</a>
             </nav>
         </section>
     </div>
-<section>
-    <nav id="menu">
-        <a href="#home">Início</a>
-        <a href="#mapa">Local</a>
-        <a href="#padrinhos">Nossos Padrinhos</a>
-        <a href="#presente">Lista de presentes</a>
-        <a href="#">Confirme sua presença</a>
-    </nav>
-</section>
+    <section>
+        <nav id="menu">
+            <a href="#home">Início</a>
+            <a href="#mapa">Local</a>
+            <a href="#padrinhos">Nossos Padrinhos</a>
+            <a href="#presente">Lista de presentes</a>
+            <a href="#confirmacao">Confirme sua presença</a>
+        </nav>
+    </section>
 
 <main>
     <section id="topo"></section>
@@ -43,11 +43,13 @@
         <img src="img/hearts.png" alt="coraçao">
             
         <article class="text">
-            <p>Olá! Como já é de conhecimento de todos, em Agosto de 2025 iremos celebrar todo nosso amor e felicidade em um recepção ---------, logicamente, queremos a sua presença! O casamento será pequeno e foi muito difícil fechar a lista de convidados dentre todas as pessoas lindas que fazem parte das nossas vidas, então acredite, você é muito querido e queremos compartilhar esse momento com você!</p><br>
+            <p>
+                Dois corações, uma história...  
+                Agosto de 2025 será o dia em que transformamos nosso amor em um "sim" eterno.  
+                Queremos compartilhar esse momento com pessoas que fazem parte da nossa jornada — e você é uma delas.  
+                Preparamos tudo com muito carinho e esperamos que esse dia seja tão especial para você quanto será para nós.
+            </p>
 
-            <p>Nesse site concentramos algumas informações sobre o dia da festa e nossa lista de presente .</p><br>
-            
-            <p>No mais, só vamos! Contamos com você!</p>
         </article>
     </section>
 
@@ -101,24 +103,28 @@
         
 
         
-    <div class="padrinhos">
+    <div class="padrinhos" id="padrinhos">
         <h2 class="titulos">Nossos Padrinhos</h2>
         <div class="padrinhos-container">
             <div class="card-padrinhos">
-                <img src="img/padrinhos/itala.jpg" alt="">
-                <p>Ítala Cunha</p>
+                <img src="img/padrinhos/itala-lucas.png" alt="Itala e Lucas">
+                <p>Ítala  e Lucas</p>
             </div>
             <div class="card-padrinhos">
-                <img src="img/padrinhos/lucas.jpg" alt="">
-                <p>Lucas Chicão</p>
+                <img src="img/padrinhos/joselia-pablo.png" alt="Joselia e Pablo">
+                <p>Joselia e Pablo</p>
             </div>
             <div class="card-padrinhos">
-                <img src="img/padrinhos/itala.jpg" alt="">
-                <p>Ítala Cunha</p>
+                <img src="img/padrinhos/bio-clara.png" alt="Maria Clara e Anthonny">
+                <p>Maria Clara e Anthonny</p>
             </div>
             <div class="card-padrinhos">
-                <img src="img/padrinhos/lucas.jpg" alt="">
-                <p>Lucas Chicão</p>
+                <img src="img/padrinhos/lidia-junior.png" alt="Lidian e Junior">
+                <p>Lidian e Junior</p>
+            </div>
+            <div class="card-padrinhos">
+                <img src="img/padrinhos/Wallace-Aline.png" alt="Aline e Wallace">
+                <p>Aline e Wallace</p>
             </div>
         </div>
     </div>
@@ -129,13 +135,24 @@
             <h2>Quem está presenteando?</h2>
             <input type="text" id="nome-presenteador" placeholder="Seu nome" required>
             <input type="email" id="email-presenteador" placeholder="Seu e-mail" required>
-        
-            <div class="modal-actions">
-            <button id="confirmar-presente">Confirmar</button>
-            <button onclick="fecharModal()">Cancelar</button>
+
+             <div id="aviso-reserva" class="aviso-alerta" style="display: none;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#856404" viewBox="0 0 16 16" class="icone-alerta">
+                <path d="M8.982 1.566a1 1 0 0 0-1.964 0L5.5 8.5v.5a.5.5 0 0 0 .5.5h.5v.5a.5.5 0 0 0 .5.5h.5v-.5a.5.5 0 0 0 .5-.5h.5a.5.5 0 0 0 .5-.5v-.5l-1.018-6.934zM8 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                </svg>
+                <span>
+                Ao clicar em <strong>"Confirmar"</strong>, o presente será reservado automaticamente.<br>
+                Caso ocorra algum erro no pagamento, por favor, entre em contato com os noivos.
+                </span>
             </div>
         
-            <div id="mensagem-sucesso" style="display: none;"></div>
+            <div class="modal-actions">
+            <button id="btn-continuar">Continuar</button>
+            <button id="confirmar-presente" style="display: none ">Confirmar</button>
+            <button onclick="fecharModal()">Cancelar</button>
+        </div>
+        
+        <div id="mensagem-sucesso" style="display: none;"></div>
             <button id="btn-pagar" onclick="continuarPagamento()" style="display: none;">Ir para o Pagamento</button>
         </div>
     </div>
@@ -228,16 +245,8 @@
             <button type="submit">Enviar</button>
         </form>
         <p id="mensagem-status" style="display:none;"></p>
-        <div id="lista-comentarios"></div>
-        <div class="btnVer">
-            <button id="ver-mais">Ver mais</button>
-            <button id="ver-menos">Ver menos</button>
-        </div>
         </div>
     </section>
-
-
-
 
       
     <section class="final">
