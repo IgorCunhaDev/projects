@@ -202,27 +202,69 @@ async function excluirComentario(comentarioId) {
   }
 }
 
+async function mostrarConfirmacoesPresenca() {
+  const listaUl = document.getElementById("lista-confirmacoes-ul");
+  listaUl.innerHTML = "";
+
+  const querySnapshot = await getDocs(collection(db, "confirmacoes"));
+  querySnapshot.forEach(doc => {
+    const data = doc.data();
+
+    // Montar texto com acompanhantes adultos e crianças
+    const adultosTexto = data.nomesAdultos && data.nomesAdultos.length > 0
+      ? data.nomesAdultos.join(", ")
+      : "Nenhum acompanhante adulto";
+
+    const criancasTexto = data.nomesCriancas && data.nomesCriancas.length > 0
+      ? data.nomesCriancas.join(", ")
+      : "Nenhuma criança";
+
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <strong>${data.nomeCompleto}</strong><br>
+      Presença: ${data.presenca}<br>
+      Adultos (incluindo acompanhante): ${data.quantidadeAdultos}<br>
+      Acompanhantes adultos: ${adultosTexto}<br>
+      Crianças: ${data.quantidadeCriancas}<br>
+      Nomes das crianças: ${criancasTexto}<br>
+      Telefone: ${data.telefone}<br>
+      Observações: ${data.observacoes}
+    `;
+
+    listaUl.appendChild(li);
+  });
+}
+
+
 // Alternando entre seções com base no item selecionado do menu lateral
   const reservasBtn = document.getElementById("reservasBtn");
   const comentariosBtn = document.getElementById("comentariosBtn");
-  const configuracoesBtn = document.getElementById("configuracoesBtn");
+  const confirmacaoBtn = document.getElementById("confirmacaoBtn");
   const presentesBtn = document.getElementById("presentesBtn");
 
-  presentesBtn.addEventListener("click", () => {
+ presentesBtn.addEventListener("click", () => {
   mostrarSecao("lista-presentes");
-  listarPresentes(); // Carrega os presentes ao abrir a seção
+  listarPresentes();
+});
 
-  reservasBtn.addEventListener("click", () => {
-    mostrarSecao("lista-reservas");
-  });
+reservasBtn.addEventListener("click", () => {
+  mostrarSecao("lista-reservas");
+  listarReservas();
+});
 
-  comentariosBtn.addEventListener("click", () => {
-    mostrarSecao("lista-comentarios");
-  });
+comentariosBtn.addEventListener("click", () => {
+  mostrarSecao("lista-comentarios");
+  listarComentarios();
+});
 
-  configuracoesBtn.addEventListener("click", () => {
-    mostrarSecao("configuracoes");
-  });
+confirmacaoBtn.addEventListener("click", () => {
+  mostrarSecao("lista-confirmacao");
+  mostrarConfirmacoesPresenca();
+}); // ← Última chave deve ser essa
+
+
+
+  
 
   // Função para mostrar a seção correta
   function mostrarSecao(secaoId) {
@@ -235,7 +277,6 @@ async function excluirComentario(comentarioId) {
       }
     });
   }
-});
 
 
   const toggleSidebarBtn = document.createElement('button');
