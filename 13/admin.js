@@ -1,6 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 import { getFirestore, collection, getDocs, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { updateDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -22,11 +24,13 @@ const ADMIN_PASSWORD = "84861963Ic"; // Senha do administrador
 
 // Função para inicializar a página administrativa após login
 function iniciarPainel() {
-  document.getElementById("loginModal").style.display = "none"; // Fecha o modal de login
-  document.getElementById("wrapper").style.display = "flex"; // Exibe o painel administrativo
-  listarReservas(); // Listar reservas
-  listarComentarios(); // Listar comentários
+  document.getElementById("loginModal").style.display = "none";
+  document.getElementById("wrapper").style.display = "flex";
+  document.body.classList.add("logged-in");
+  listarReservas();
+  listarComentarios();
 }
+
 
 
 // Login de usuário (apenas um login permitido)
@@ -64,6 +68,7 @@ onAuthStateChanged(auth, (user) => {
     iniciarPainel();
   }
 });
+
 
 // Função para listar as reservas de presentes
 async function listarReservas() {
@@ -109,6 +114,52 @@ async function excluirReserva(reservaId) {
   }
 }
 
+
+// Função para listar presentes com botão para alterar reservado (true/false)
+async function listarPresentes() {
+  const presentesRef = collection(db, "presentes");
+  const querySnapshot = await getDocs(presentesRef);
+  const listaPresentes = document.getElementById('lista-presentes-ul');
+  listaPresentes.innerHTML = ''; // limpa a lista
+
+  let index = 0;
+  querySnapshot.forEach(docSnap => {
+    const presente = docSnap.data();
+    const li = document.createElement('li');
+    li.style.padding = '12px';
+    li.style.marginBottom = '6px';
+    li.style.backgroundColor = index % 2 === 0 ? '#e9f1f6' : '#ffffff';
+
+    li.innerHTML = `
+      <strong>${presente.nome}</strong> — Status: <em>${presente.reservado ? 'Reservado' : 'Disponível'}</em>
+    `;
+
+    const btnToggle = document.createElement('button');
+    btnToggle.textContent = presente.reservado ? 'Marcar como Disponível' : 'Marcar como Reservado';
+    btnToggle.style.marginLeft = '10px';
+
+    btnToggle.addEventListener('click', async () => {
+      await atualizarStatusPresente(docSnap.id, !presente.reservado);
+      listarPresentes(); // Atualiza lista após mudança
+    });
+
+    li.appendChild(btnToggle);
+    listaPresentes.appendChild(li);
+    index++;
+  });
+}
+
+async function atualizarStatusPresente(presenteId, novoStatus) {
+  try {
+    const presenteRef = doc(db, "presentes", presenteId);
+    await updateDoc(presenteRef, { reservado: novoStatus });
+    alert(`Presente atualizado para ${novoStatus ? "Reservado" : "Disponível"}`);
+  } catch (error) {
+    console.error("Erro ao atualizar status do presente:", error);
+  }
+}
+
+
 // Função para listar os comentários
 async function listarComentarios() {
   const comentariosRef = collection(db, "comentarios");
@@ -152,10 +203,14 @@ async function excluirComentario(comentarioId) {
 }
 
 // Alternando entre seções com base no item selecionado do menu lateral
-document.addEventListener('DOMContentLoaded', () => {
   const reservasBtn = document.getElementById("reservasBtn");
   const comentariosBtn = document.getElementById("comentariosBtn");
   const configuracoesBtn = document.getElementById("configuracoesBtn");
+  const presentesBtn = document.getElementById("presentesBtn");
+
+  presentesBtn.addEventListener("click", () => {
+  mostrarSecao("lista-presentes");
+  listarPresentes(); // Carrega os presentes ao abrir a seção
 
   reservasBtn.addEventListener("click", () => {
     mostrarSecao("lista-reservas");
@@ -183,7 +238,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-document.addEventListener('DOMContentLoaded', () => {
   const toggleSidebarBtn = document.createElement('button');
   toggleSidebarBtn.textContent = '☰';
   toggleSidebarBtn.classList.add('toggle-sidebar');
@@ -218,5 +272,4 @@ document.addEventListener('DOMContentLoaded', () => {
       botaoFixo.style.display = 'block'; // Mostra o botão fixo novamente
     });
   });
-});
 

@@ -11,6 +11,25 @@ body {
     min-height: 100vh;
 }
 
+/* Inicialmente oculto */
+#sidebar,
+#content,
+.content-section {
+  display: none;
+}
+
+/* Após login */
+body.logged-in #sidebar,
+body.logged-in #content,
+body.logged-in .content-section {
+  display: block;
+}
+
+body.logged-in #content {
+  margin-left: 250px;
+}
+
+
 /* Modal de login */
 #loginModal {
     position: fixed;
@@ -89,16 +108,16 @@ body {
 
 /* Menu Lateral */
 #sidebar {
-    background-color: #4a8bb7;
-    color: white;
-    width: 250px;
-    height: 100vh;
-    position: fixed;
-    left: -250px;  /* Sidebar começa oculto à esquerda */
-    top: 0;
-    transition: all 0.3s ease;
-    padding-top: 20px;
-    z-index: 1000;
+  background-color: #4a8bb7;
+  color: white;
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding-top: 20px;
+  z-index: 1000;
+  transition: left 0.3s ease; /* adiciona transição suave */
 }
 
 .sidebar-header {
@@ -196,10 +215,10 @@ ul.components li a.active {
 
 /* Conteúdo Principal */
 #content {
-    margin-left: 0; /* Ajustado para não haver espaço à esquerda */
-    padding: 20px;
-    flex: 1;
-    transition: margin-left 0.3s ease;
+  margin-left: 250px;
+  padding: 20px;
+  flex: 1;
+  transition: margin-left 0.3s ease;
 }
 
 .content-section {
