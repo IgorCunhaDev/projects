@@ -75,6 +75,30 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
+//modal img
+ const imagens = document.querySelectorAll('.img-local img, .padrinhos-container img');
+  const modal = document.getElementById('modal-img');
+  const modalImg = document.getElementById('imagem-ampliada');
+  const fechar = document.querySelector('.fechar');
+
+  imagens.forEach(img => {
+    img.addEventListener('click', () => {
+      modal.style.display = 'flex';
+      modalImg.src = img.src;
+    });
+  });
+
+  fechar.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+});
+
+
 // Modal de Presente
 function abrirModal() {
   const modal = document.getElementById('modal-presente');
@@ -345,7 +369,7 @@ form.addEventListener('submit', async (e) => {
 
       form.reset();
       form.style.display = 'none'; 
-      statusMsg.textContent = 'Comentário enviado com sucesso!';
+      statusMsg.textContent = 'Recado enviado com sucesso!';
       statusMsg.style.display = 'flex';
     } catch (error) {
       console.error('Erro ao enviar comentário:', error);
@@ -387,10 +411,10 @@ adultosSelect.addEventListener("change", () => {
   const qtd = parseInt(adultosSelect.value);
   for (let i = 2; i <= qtd; i++) {
     const label = document.createElement("label");
-    label.textContent = `Acompanhante ${i} - Nome completo`;
+    label.textContent = `Acompanhante(s)`;
     const input = document.createElement("input");
     input.type = "text";
-    input.placeholder = `Nome do acompanhante ${i}`;
+    input.placeholder = `Nome do acompanhante`;
     input.classList.add("adulto-input");
     input.required = true;
 
@@ -405,10 +429,10 @@ criancasSelect.addEventListener("change", () => {
   const qtd = parseInt(criancasSelect.value);
   for (let i = 1; i <= qtd; i++) {
     const label = document.createElement("label");
-    label.textContent = `Criança ${i} - Nome completo`;
+    label.textContent = `Criança`;
     const input = document.createElement("input");
     input.type = "text";
-    input.placeholder = `Nome da criança ${i}`;
+    input.placeholder = `Nome da criança`;
     input.classList.add("crianca-input");
     input.required = true;
 

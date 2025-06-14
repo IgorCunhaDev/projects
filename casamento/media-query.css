@@ -90,6 +90,10 @@
         width: 120px;
         margin: 5px;
     }
+
+    .modal-conteudo {
+        max-width: 60%;
+    }
   
     .time {
       width: 80px;
