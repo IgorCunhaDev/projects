@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-import { getFirestore, collection, getDocs, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, doc, deleteDoc, addDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 import { updateDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
 
@@ -313,4 +313,45 @@ confirmacaoBtn.addEventListener("click", () => {
       botaoFixo.style.display = 'block'; // Mostra o botão fixo novamente
     });
   });
+
+  // Alternar para a seção de adicionar presente
+const adicionarPresenteBtn = document.getElementById("adicionarPresenteBtn");
+adicionarPresenteBtn.addEventListener("click", () => {
+  mostrarSecao("adicionar-presente");
+});
+
+// Função para adicionar presente ao Firestore
+const formAdicionarPresente = document.getElementById("form-adicionar-presente");
+
+if (formAdicionarPresente) {
+  formAdicionarPresente.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const nome = document.getElementById("nome").value;
+    const categoria = document.getElementById("categoria").value;
+    const imagem = document.getElementById("imagem").value;
+    const valor = parseFloat(document.getElementById("valor").value);
+    const linkPagamento = document.getElementById("linkPagamento").value;
+
+    try {
+      await addDoc(collection(db, "presentes"), {
+        nome,
+        categoria,
+        imagem,
+        valor,
+        linkPagamento,
+        reservado: false
+      });
+
+      alert("Presente adicionado com sucesso!");
+      formAdicionarPresente.reset(); // limpa o formulário
+      listarPresentes(); // atualiza a lista de presentes
+      mostrarSecao("lista-presentes"); // volta pra seção da lista
+    } catch (error) {
+      console.error("Erro ao adicionar presente:", error);
+      alert("Erro ao adicionar presente.");
+    }
+  });
+}
+
 

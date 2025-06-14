@@ -298,6 +298,46 @@ ul.components li a.active {
   color: #4caf50;
 }
 
+#form-adicionar-presente {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Inputs e botões */
+#form-adicionar-presente input[type="text"],
+#form-adicionar-presente input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccd6dd;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+#form-adicionar-presente input[type="text"]:focus,
+#form-adicionar-presente input[type="number"]:focus {
+  outline: none;
+  border-color: #4096ff;
+  box-shadow: 0 0 5px rgba(64, 150, 255, 0.5);
+}
+
+/* Botão */
+#form-adicionar-presente button {
+  padding: 12px;
+  background-color: #4096ff;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#form-adicionar-presente button:hover {
+  background-color: #326ac0;
+}
 
 
 
