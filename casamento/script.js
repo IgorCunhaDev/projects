@@ -108,9 +108,18 @@ function abrirModal() {
 
 // Função chamada ao clicar no botão "Presentear"
 window.reservarPresente = function(nomeDoPresente) {
-  window.presenteSelecionado = nomeDoPresente; // salva globalmente
-  abrirModal(); // abre o modal
+  const presente = todosPresentes.find(p => p.nome === nomeDoPresente);
+  if (!presente) {
+    alert("Presente não encontrado.");
+    return;
+  }
+
+  window.presenteSelecionado = nomeDoPresente; // nome para salvar no Firestore
+  window.linkSelecionado = presente.linkPagamento; // link real de pagamento
+
+  abrirModal();
 };
+
 
 function fecharModal() {
   const modal = document.getElementById('modal-presente');
@@ -239,11 +248,12 @@ document.getElementById('confirmar-presente').addEventListener('click', async fu
 
 
 // Redirecionar para Mercado Pago
-function continuarPagamento() {
-  window.open("https://mpago.la/2kd9gDg", "_blank");
-  fecharModal();
-  window.scrollTo(0, 0); // Opcional
+function continuarPagamento(link) {
+  window.open(link, "_blank");
+  fecharModal?.(); // se você tiver um modal
+  window.scrollTo(0, 0);
 }
+
 
 window.continuarPagamento = continuarPagamento;
 
