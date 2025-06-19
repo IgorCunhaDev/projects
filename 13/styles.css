@@ -379,3 +379,60 @@ ul.components li a.active {
     }
 }
 
+/* Estilo para a lista de presentes */
+#lista-presentes-ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-presente {
+  background-color: #f0f8ff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.presente-nome {
+  font-weight: bold;
+  font-size: 1.1rem;
+  flex: 1 1 auto;
+}
+
+.presente-status {
+  font-style: italic;
+  font-weight: bold;
+  margin-left: 15px;
+  font-size: 0.95rem;
+}
+
+.presente-status.disponivel {
+  color: green;
+}
+
+.presente-status.reservado {
+  color: red;
+}
+
+.btn-reservar {
+  background-color: #1d3d57;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 15px;
+  transition: background-color 0.3s;
+}
+
+.btn-reservar:hover {
+  background-color: #e04141;
+}
+

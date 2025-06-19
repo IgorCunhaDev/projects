@@ -126,17 +126,20 @@ async function listarPresentes() {
   querySnapshot.forEach(docSnap => {
     const presente = docSnap.data();
     const li = document.createElement('li');
-    li.style.padding = '12px';
-    li.style.marginBottom = '6px';
-    li.style.backgroundColor = index % 2 === 0 ? '#e9f1f6' : '#ffffff';
+    li.classList.add("card-presente"); // classe de estilo
 
-    li.innerHTML = `
-      <strong>${presente.nome}</strong> — Status: <em>${presente.reservado ? 'Reservado' : 'Disponível'}</em>
-    `;
+li.innerHTML = `
+  <span class="presente-nome">${presente.nome}</span>
+  <span class="presente-status ${presente.reservado ? 'reservado' : 'disponivel'}">
+    ${presente.reservado ? 'Reservado' : 'Disponível'}
+  </span>
+`;
+
 
     const btnToggle = document.createElement('button');
     btnToggle.textContent = presente.reservado ? 'Marcar como Disponível' : 'Marcar como Reservado';
-    btnToggle.style.marginLeft = '10px';
+  btnToggle.classList.add('btn-reservar');
+
 
     btnToggle.addEventListener('click', async () => {
       await atualizarStatusPresente(docSnap.id, !presente.reservado);
