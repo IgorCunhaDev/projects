@@ -174,7 +174,15 @@ html, body {
 }
 
 #home > img {
-  padding-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+.data {
+  font-family: "Pinyon Script", cursive;
+  font-weight: 400;
+  font-size: 40px;
+  color: var(--cor-primaria);
+  padding-bottom: 10px;
 }
 
 #contador {
