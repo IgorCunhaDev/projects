@@ -263,6 +263,8 @@ window.continuarPagamento = continuarPagamento;
 let todosPresentes = [];
 let itensVisiveis = 6; // Inicialmente, 6 itens visíveis
 
+let presentesAtuais = [];
+
 // Função para renderizar os presentes
 function renderizarPresentes(lista) {
   const container = document.getElementById('lista-presentes');
@@ -324,21 +326,22 @@ onSnapshot(presentesQuery, (snapshot) => {
   };
 });
 
-  renderizarPresentes(todosPresentes);
+   presentesAtuais = [...todosPresentes]; // Inicializa a lista filtrada com todos
+  renderizarPresentes(presentesAtuais);
 });
 
 
 // Função para mostrar mais itens
 function mostrarMais() {
   itensVisiveis += 6;  
-  renderizarPresentes(todosPresentes);  
+  renderizarPresentes(presentesAtuais);  
 }
 
 // Função para mostrar menos itens
 function mostrarMenos() {
   if (itensVisiveis > 6) {
     itensVisiveis -= 6;  
-    renderizarPresentes(todosPresentes);  
+    renderizarPresentes(presentesAtuais);  
   }
 }
 
@@ -346,11 +349,12 @@ function mostrarMenos() {
 document.getElementById('filtro-categoria').addEventListener('change', function () {
   const categoriaSelecionada = this.value;
   if (categoriaSelecionada === 'todos') {
-    renderizarPresentes(todosPresentes);  
+    presentesAtuais = [...todosPresentes];
   } else {
-    const filtrados = todosPresentes.filter(p => p.categoria === categoriaSelecionada);
-    renderizarPresentes(filtrados);  
+    presentesAtuais = todosPresentes.filter(p => p.categoria === categoriaSelecionada);
   }
+  itensVisiveis = 6; // reseta a quantidade
+  renderizarPresentes(presentesAtuais);
 });
 
 // Atribuir as funções aos botões
